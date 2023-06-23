@@ -1,0 +1,4 @@
+.vscode
+financeapp/__pycache__
+financeapp/views/__pycache__
+financemanagement/__pycache__
