@@ -25,9 +25,17 @@ hr {
     font-size: 1vw;
 }
 
+#extract, #dashboard {
+    font-size: 1vw;
+}
+
 /* Estilos para dispositivos móveis */
-@media (max-width: 600px) {
+@media (max-width: 767px) {
     .btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
         font-size: 1rem !important;
+    }
+
+    #extract, #dashboard {
+        font-size: 1rem;
     }
 }
