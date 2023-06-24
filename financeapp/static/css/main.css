@@ -19,3 +19,15 @@
 hr {
     background-color: black;
 }
+
+
+.btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
+    font-size: 1vw;
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 600px) {
+    .btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
+        font-size: 1rem !important;
+    }
+}
