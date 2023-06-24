@@ -1,8 +1,17 @@
 
-var btnAdicionarReceita = document.getElementById("add-revenue");
+const addEventListeners = () => {
+    const btnAddRevenue = document.getElementById("add-revenue");
+    const btnAddExpense = document.getElementById("add-expense");
 
-// Adicione um ouvinte de evento para o clique no botão
-btnAdicionarReceita.addEventListener("click", function () {
-    // Mostre o modal usando o JavaScript do Bootstrap
-    $('#myModal').modal('show');
+    btnAddRevenue.addEventListener("click", () => {
+        $('#myModal').modal('show');
+    });
+
+    btnAddExpense.addEventListener("click", () => {
+        $('#myModalDespesa').modal('show');
+    });
+}
+
+window.addEventListener("load", () => {
+    addEventListeners();
 });

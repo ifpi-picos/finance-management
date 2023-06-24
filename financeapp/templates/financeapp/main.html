@@ -122,6 +122,94 @@
         </div>
     </div>
 
+    <div class="modal fade" id="myModalDespesa" tabindex="-1" role="dialog" aria-labelledby="myModalLabelDespesa">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title-md" id="myModalLabelDespesa">Adicionar Despesa</h6>
+                </div>
+                <form>
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row form-group">
+                                <div class="col">
+                                    <!-- Descrição -->
+                                    <label for="descriptionDespesa">Descrição</label>
+                                    <input type="text" class="form-control" id="descriptionDespesa" placeholder="Descrição"
+                                        name="descriptionDespesa">
+                                </div>
+                                <div class="col">
+                                    <!-- Valor -->
+                                    <label for="valueDespesa">Valor</label>
+                                    <input type="number" class="form-control" id="valueDespesa" placeholder="Valor"
+                                        name="valueDespesa">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <!-- Data -->
+                                    <label for="dateDespesa">Data</label>
+                                    <input type="date" class="form-control" id="dateDespesa" placeholder="Data"
+                                        name="dateDespesa">
+                                </div>
+                                <div class="col">
+                                    <!-- Despesa recorrente -->
+                                    <label for="recurrentDespesa">Recorrente</label>
+                                    <select class="form-control" id="recurrentDespesa" name="recurrentDespesa">
+                                        <option value="0">Não</option>
+                                        <option value="1">Sim</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <!-- Categoria -->
+                                    <label for="categoryDespesa">Categoria</label>
+                                    <select class="form-control" id="categoryDespesa" name="categoryDespesa">
+                                        {% for categoryexpense in categoryexpenses %}
+                                        <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
+                                        data-target="#categoryToggleDespesa" aria-expanded="false"
+                                        aria-controls="categoryToggleDespesa">
+                                        Adicionar / Remover Categorias
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="collapse mt-3" id="categoryToggleDespesa">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="newCategoryDespesa">Nova Categoria</label>
+                                        <input type="text" class="form-control" id="newCategoryDespesa"
+                                            placeholder="Digite o nome da nova categoria">
+                                        <button type="button" class="btn btn-primary mt-2">Adicionar</button>
+                                    </div>
+                                    <div class="col">
+                                        <label for="deleteCategoryDespesa">Excluir Categoria</label>
+                                        <select class="form-control" id="deleteCategoryDespesa">
+                                            {% for categoryexpense in categoryexpenses %}
+                                            <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="button" class="btn btn-danger mt-2">Excluir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -151,7 +239,7 @@
                                     <i class="fa-solid fa-plus"></i>
                                     Receita
                                 </button>
-                                <button type="button" class="btn btn-outline-danger">
+                                <button type="button" id="add-expense" class="btn btn-outline-danger">
                                     <i class="fa-solid fa-plus"></i>
                                     Despesa
                                 </button>
