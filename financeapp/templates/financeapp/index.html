@@ -196,13 +196,16 @@
                                     </form>
                                 </div>
                                 <div class="col">
-                                    <label for="deleteCategory">Excluir Categoria</label>
-                                    <select class="form-control" id="deleteCategory">
-                                        {% for categoryearning in categoryearnings %}
-                                        <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <button type="button" class="btn btn-danger mt-2">Excluir</button>
+                                    <form action="{% url 'financeapp:deletecategoryearnings' %}" method="post">
+                                        {% csrf_token %}
+                                        <label for="deleteCategory">Excluir Categoria</label>
+                                        <select class="form-control" id="deleteCategory" name="delete-category">
+                                            {% for categoryearning in categoryearnings %}
+                                            <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -290,13 +293,16 @@
                                 </form>
                                 </div>
                                 <div class="col">
-                                    <label for="deleteCategory">Excluir Categoria</label>
-                                    <select class="form-control" id="deleteCategory">
-                                        {% for categoryexpense in categoryexpenses %}
-                                        <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <button type="button" class="btn btn-danger mt-2">Excluir</button>
+                                    <form action="{% url 'financeapp:deletecategoryexpenses' %}" method="post">
+                                        {% csrf_token %}
+                                        <label for="deleteCategory">Excluir Categoria</label>
+                                        <select class="form-control" id="deleteCategory" name="delete-category">
+                                            {% for categoryexpense in categoryexpenses %}
+                                            <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

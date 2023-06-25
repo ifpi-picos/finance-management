@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
 from django.http import HttpResponseRedirect
 from financeapp.models import CategoryEarnings, CategoryExpenses, Earnings, Expenses
 from django.contrib import messages
@@ -92,3 +92,22 @@ def create_category_expenses(request):
 
         messages.success(request, 'Categoria de despesa adicionada com sucesso!')
         return HttpResponseRedirect('/dashboard')
+    
+def delete_category_earnings(request):
+    if request.method == 'POST':
+        category = request.POST.get('delete-category')
+        category = CategoryEarnings.objects.get(id=int(category))
+        category.delete()
+
+        messages.success(request, 'Categoria de receita deletada com sucesso!')
+        return HttpResponseRedirect('/dashboard')
+
+def delete_category_expenses(request):
+    if request.method == 'POST':
+        category = request.POST.get('delete-category')
+        category = CategoryExpenses.objects.get(id=int(category))
+        category.delete()
+
+        messages.success(request, 'Categoria de despesa deletada com sucesso!')
+        return HttpResponseRedirect('/dashboard')
+    
