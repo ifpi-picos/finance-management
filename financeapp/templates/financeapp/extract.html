@@ -44,6 +44,24 @@
             </thead>
             <tbody>
                 {% for earning in earnings %}
+                <!-- Modal earning -->
+                <div class="modal fade" id="deleteModalEarning" tabindex="-1"
+                    aria-labelledby="deleteModalEarningLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalEarning">Confirmar exclusão</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Deseja realmente deletar este item?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                <a href="{% url 'financeapp:deleteearnings' earning.id %}" class="btn btn-danger">Deletar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <tr>
                     <td>{{ earning.description }}</td>
                     <td>R$ {{ earning.value }}</td>
@@ -60,9 +78,9 @@
                         <a href="#" class="btn btn-info">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a href="#" class="btn btn-danger">
+                        <button type="button" id="delete-earning-modal" class="btn btn-danger">
                             <i class="fa-solid fa-trash-can"></i>
-                        </a>
+                        </button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -83,6 +101,24 @@
             </thead>
             <tbody>
                 {% for expense in expenses %}
+                <!-- Modal expense -->
+                <div class="modal fade" id="deleteModalExpense" tabindex="-1"
+                    aria-labelledby="deleteModalExpenseLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalExpense">Confirmar exclusão</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Deseja realmente deletar este item?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                <a href="{% url 'financeapp:deleteexpenses' expense.id %}" class="btn btn-danger">Deletar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <tr>
                     <td>{{ expense.description }}</td>
                     <td>R$ {{ expense.value }}</td>
@@ -99,9 +135,9 @@
                         <a href="#" class="btn btn-info">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a href="#" class="btn btn-danger">
+                        <button type="button" id="delete-expense-modal" class="btn btn-danger">
                             <i class="fa-solid fa-trash-can"></i>
-                        </a>
+                        </button>
                     </td>
                 </tr>
                 {% endfor %}

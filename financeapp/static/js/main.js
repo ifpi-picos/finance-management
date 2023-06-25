@@ -3,6 +3,8 @@ const addEventListeners = () => {
     const btnAddExpense = document.getElementById("add-expense");
     const btnSubmitFormRevenue = document.getElementById("submit-form-revenue");
     const btnSubmitFormExpense = document.getElementById("submit-form-expense");
+    const btnDeleteRevenue = document.getElementById("delete-earning-modal");
+    const btnDeleteExpense = document.getElementById("delete-expense-modal");
 
     btnAddRevenue.addEventListener("click", () => {
         $('#ModalRevenue').modal('show');
@@ -11,7 +13,22 @@ const addEventListeners = () => {
     btnAddExpense.addEventListener("click", () => {
         $('#ModalExpense').modal('show');
     });
+    
+    try {
+        btnDeleteRevenue.addEventListener("click", () => {
+            $('#deleteModalEarning').modal('show');
+        });
+    } catch (error) {
+        // pass
+    }
 
+    try {
+        btnDeleteExpense.addEventListener("click", () => {
+            $('#deleteModalExpense').modal('show');
+        });
+    } catch (error) {
+        // pass
+    }
     btnSubmitFormRevenue.addEventListener("click", () => {
         const form = document.getElementById("form-revenue");
         form.submit();

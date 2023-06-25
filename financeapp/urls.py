@@ -14,4 +14,6 @@ urlpatterns = [
     path('createcategoryexpenses', views.create_category_expenses, name='createcategoryexpenses'),
     path('deletecategoryearnings', views.delete_category_earnings, name='deletecategoryearnings'),
     path('deletecategoryexpenses', views.delete_category_expenses, name='deletecategoryexpenses'),
+    path('deleteearnings/<int:id>', views.delete_earnings, name='deleteearnings'),
+    path('deleteexpenses/<int:id>', views.delete_expenses, name='deleteexpenses'),
 ]

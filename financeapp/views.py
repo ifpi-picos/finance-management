@@ -24,6 +24,8 @@ class ExtractApp(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['categoryearnings'] = CategoryEarnings.objects.all()
+        context['categoryexpenses'] = CategoryExpenses.objects.all()
         earnings = Earnings.objects.all()
         expenses = Expenses.objects.all()
 
@@ -42,7 +44,7 @@ class ExtractApp(ListView):
         elif start_date or end_date:
             context['start_date'] = start_date
             context['end_date'] = end_date
-            
+
             if start_date and end_date:
                 earnings = earnings.filter(date__range=[start_date, end_date])
                 expenses = expenses.filter(date__range=[start_date, end_date])
@@ -139,3 +141,16 @@ def delete_category_expenses(request):
         messages.success(request, 'Categoria de despesa deletada com sucesso!')
         return HttpResponseRedirect('/dashboard')
     
+def delete_earnings(request, id):
+    earning = Earnings.objects.get(id=int(id))
+    earning.delete()
+
+    messages.success(request, 'Receita deletada com sucesso!')
+    return HttpResponseRedirect('/extract')
+
+def delete_expenses(request, id):
+    expense = Expenses.objects.get(id=int(id))
+    expense.delete()
+
+    messages.success(request, 'Despesa deletada com sucesso!')
+    return HttpResponseRedirect('/extract')
