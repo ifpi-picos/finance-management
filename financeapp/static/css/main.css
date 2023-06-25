@@ -29,6 +29,16 @@ hr {
     font-size: 1vw;
 }
 
+.rounded-circle{
+    width: 10vw; 
+    height: 10vw; 
+    overflow: hidden;
+}
+
+.user-name {
+    font-size: 1vw;
+}
+
 /* Estilos para dispositivos móveis */
 @media (max-width: 767px) {
     .btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
