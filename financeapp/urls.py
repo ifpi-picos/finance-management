@@ -8,4 +8,8 @@ urlpatterns = [
     path('', RedirectView.as_view(url='dashboard'), name='dashboard'),
     path('dashboard', views.DashboardApp.as_view(), name='dashboard'),
     path('extract', views.ExtractApp.as_view(), name='extract'),
+    path('createearnings', views.create_earnings, name='createearnings'),
+    path('createexpenses', views.create_expenses, name='createexpenses'),
+    path('createcategoryearnings', views.create_category_earnings, name='createcategoryearnings'),
+    path('createcategoryexpenses', views.create_category_expenses, name='createcategoryexpenses'),
 ]
