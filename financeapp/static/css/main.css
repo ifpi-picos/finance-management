@@ -48,4 +48,14 @@ hr {
     #extract, #dashboard {
         font-size: 1rem;
     }
+
+    .rounded-circle{
+        width: 10rem; 
+        height: 10rem; 
+        overflow: hidden;
+    }
+
+    .user-name {
+        font-size: 1rem;
+    }
 }
