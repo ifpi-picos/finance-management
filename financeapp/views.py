@@ -3,7 +3,9 @@ from django.views.generic import ListView, DeleteView
 from django.http import HttpResponseRedirect
 from financeapp.models import CategoryEarnings, CategoryExpenses, Earnings, Expenses
 from django.contrib import messages
+from django.db.models import Q
 import decimal
+
 
 class DashboardApp(ListView):
     template_name = 'financeapp/dashboard.html'
@@ -22,9 +24,37 @@ class ExtractApp(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categoryearnings'] = CategoryEarnings.objects.all()
-        context['categoryexpenses'] = CategoryExpenses.objects.all()
+        earnings = Earnings.objects.all()
+        expenses = Expenses.objects.all()
 
+        start_date = self.request.GET.get('start_date')
+        end_date = self.request.GET.get('end_date')
+        search_box = self.request.GET.get('search')
+
+        if search_box:
+            earnings = earnings.filter(
+                Q(description__icontains=search_box) | Q(value__icontains=search_box) | Q(date__icontains=search_box)
+            )
+            expenses = expenses.filter(
+                Q(description__icontains=search_box) | Q(value__icontains=search_box) | Q(date__icontains=search_box)
+            )
+        
+        elif start_date or end_date:
+            context['start_date'] = start_date
+            context['end_date'] = end_date
+            
+            if start_date and end_date:
+                earnings = earnings.filter(date__range=[start_date, end_date])
+                expenses = expenses.filter(date__range=[start_date, end_date])
+            elif start_date:
+                earnings = earnings.filter(date__gte=start_date)
+                expenses = expenses.filter(date__gte=start_date)
+            elif end_date:
+                earnings = earnings.filter(date__lte=end_date)
+                expenses = expenses.filter(date__lte=end_date)
+
+        context['earnings'] = earnings
+        context['expenses'] = expenses
         return context
 
 def convert_value(value):
