@@ -4,7 +4,7 @@
     background-color: yellow;
     display: flex;
     justify-content: center;
-    height: 220%;
+    height: 100%;
     width: 10%;
   }
   
@@ -12,7 +12,7 @@
     background-color: green;
     display: flex;
     justify-content: center;
-    height: 220%;
+    height: 100%;
     width: 10%;
   }
   
@@ -20,14 +20,14 @@
     background-color: red;
     display: flex;
     justify-content: center;
-    height: 220%;
+    height: 100%;
     width: 10%;
   }
 
 .text-white-1 {
     display: flex;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     justify-content: center;
     align-items: center;
     
@@ -36,7 +36,7 @@
 .text-white-2 {
     display: flex;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     justify-content: center;
     align-items: center;
     
@@ -45,7 +45,7 @@
 .text-white-3 {
     display: flex;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     justify-content: center;
     align-items: center;
     
