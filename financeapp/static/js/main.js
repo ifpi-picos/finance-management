@@ -19,7 +19,7 @@ const addEventListeners = () => {
             $('#deleteModalEarning').modal('show');
         });
     } catch (error) {
-        // pass
+        console.log(error);
     }
 
     try {
@@ -27,8 +27,9 @@ const addEventListeners = () => {
             $('#deleteModalExpense').modal('show');
         });
     } catch (error) {
-        // pass
+        console.log(error);
     }
+
     btnSubmitFormRevenue.addEventListener("click", () => {
         const form = document.getElementById("form-revenue");
         form.submit();
