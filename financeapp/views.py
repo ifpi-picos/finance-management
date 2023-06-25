@@ -16,8 +16,6 @@ class DashboardApp(ListView):
 
         return context
 
-
-
 class ExtractApp(ListView):
     template_name = 'financeapp/extract.html'
     model = Earnings
