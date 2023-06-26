@@ -18,6 +18,68 @@
         <i class="fas fa-frown ml-auto text-white-3 icon-background-red"></i>
       </div>
     </div>
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <canvas id="myChart">
+        </canvas>
+      </div>
+    </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const data = {
+      labels: [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+        'Julho',
+        'Agosto',
+        'Setembro',
+        'Outubro',
+        'Novembro',
+        'Dezembro'
+      ],
+      datasets: [{
+        label: 'Receita',
+        data: [65, 59, 90, 81, 56, 55, 40],
+        fill: true,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgb(255, 99, 132)',
+        pointBackgroundColor: 'rgb(255, 99, 132)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(255, 99, 132)'
+      }, {
+        label: 'Despesa',
+        data: [28, 48, 40, 19, 96, 27, 100],
+        fill: true,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgb(54, 162, 235)',
+        pointBackgroundColor: 'rgb(54, 162, 235)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgb(54, 162, 235)'
+      }]
+    };
+    const config = {
+      type: 'radar',
+      data: data,
+      options: {
+        elements: {
+          line: {
+            borderWidth: 3
+          }
+        }
+      }
+    };
+    new Chart(ctx, config);
+  });
+</script>
 {% endblock content %}
