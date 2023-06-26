@@ -2,85 +2,100 @@
 {% load static %}
 {% block title %}Gestor de Finanças - Início{% endblock title %}
 {% block content %}
-<div class="col-md-10 content bg-light mt-4">
-  <div class="container mt-2">
+<div class="row dashboard-content">
+  <div class="col">
+    <div class="row d-flex mt-3">
+      <div class="col info-box bg-white mr-2">
+        <span class="info-box-icon bg-warning"><i class="fas fa-landmark text-white-1" style="color: white;"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Saldo</span>
+          <span class="info-box-number">R$ 1,410</span>
+        </div>
+      </div>
+      <div class="col info-box bg-white mr-2">
+        <span class="info-box-icon bg-success"><i class="fas fa-smile"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Receita</span>
+          <span class="info-box-number">R$ 1,410</span>
+        </div>
+      </div>
+      <div class="col info-box bg-white mr-2">
+        <span class="info-box-icon bg-danger"><i class="fas fa-frown"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Despesas</span>
+          <span class="info-box-number">R$ 1,410</span>
+        </div>
+      </div>
+      <div class="col info-box bg-white">
+        <span class="info-box-icon bg-danger"><i class="fas fa-frown"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Despesas</span>
+          <span class="info-box-number">R$ 1,410</span>
+        </div>
+      </div>
+    </div>
     <div class="row">
-      <div class="saldo col-md-3 border p-3 d-flex align-items-center rounded">
-        Saldo
-        <i class="fas fa-landmark ml-auto text-white-1 icon-background-yellow"></i>
+      <div class="col info-box bg-white mr-2">
+        <span class="info-box-icon bg-warning"><i class="fas fa-landmark text-white-1" style="color: white;"></i></span>
+        <div class="info-box-content">
+          <span class="info-box-text">Saldo</span>
+          <span class="info-box-number">R$ 1,410</span>
+        </div>
       </div>
-      <div class="receita col-md-3 border p-3 d-flex align-items-center ml-2 rounded">
-        Receita
-        <i class="fas fa-smile ml-auto text-white-2 icon-background-green"></i>
-      </div>
-      <div class="despesa col-md-3 border p-3 d-flex align-items-center ml-2 rounded">
-        Despesa
-        <i class="fas fa-frown ml-auto text-white-3 icon-background-red"></i>
+      <div class="col info-box bg-white">
+        <canvas id="myChart">
+        </canvas>
       </div>
     </div>
   </div>
 </div>
-<div class="container text-center">
-  <div class="row mt-4">
-    <div class="col-6">
-      <canvas id="myChart">
-      </canvas>
-    </div>
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          const ctx = document.getElementById('myChart').getContext('2d');
-          const labels = [
-                'Janeiro',
-                'Fevereiro',
-                'Março',
-                'Abril',
-                'Maio',
-                'Junho',
-                'Julho',
-                'Agosto',
-                'Setembro',
-                'Outubro',
-                'Novembro',
-                'Dezembro'
-              ];
-          const data = {
-            labels: labels,
-            datasets: [{
-              label: 'Receita',
-              data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000],
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1
-            },
-            {
-              labels: labels,
-              label: 'Despesa',
-              data: [1, 500, 50, 1000, 5000, 600, 700, 800, 900, 400, 589, 3800],
-              fill: false,
-              borderColor: 'rgb(255, 99, 132)',
-              tension: 0.1
-            }
-          
-          ]
-          };
-          
-          const config = {
-            type: 'line',
-            data: data,
-            options: {}
-          };
-          new Chart(ctx, config);
-        });
-      </script>
-    </div>
-    <div class="col-6">
-      Teste
-    </div>
-  </div>
-</div>
-
-
 {% endblock content %}
 {% block scripts %}
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const labels = [
+          'Janeiro',
+          'Fevereiro',
+          'Março',
+          'Abril',
+          'Maio',
+          'Junho',
+          'Julho',
+          'Agosto',
+          'Setembro',
+          'Outubro',
+          'Novembro',
+          'Dezembro'
+        ];
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Receita',
+        data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      },
+      {
+        labels: labels,
+        label: 'Despesa',
+        data: [1, 500, 50, 1000, 5000, 600, 700, 800, 900, 400, 589, 3800],
+        fill: false,
+        borderColor: 'rgb(255, 99, 132)',
+        tension: 0.1
+      }
+    
+    ]
+    };
+    
+    const config = {
+      type: 'line',
+      data: data,
+      options: {}
+    };
+    new Chart(ctx, config);
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock scripts %}
