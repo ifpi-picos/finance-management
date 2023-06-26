@@ -1,0 +1,39 @@
+{% if earning %}
+    <!-- Modal earning -->
+    <div class="modal fade" id="modalDeleteEarning{{ earning.id }}" tabindex="-1" aria-labelledby="modalDeleteEarning{{ earning.id }}Label"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteEarning{{ earning.id }}Label">Confirmar exclusão</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja realmente deletar '{{ earning.description }}'?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <a href="{% url 'financeapp:deleteearnings' earning.id %}" class="btn btn-danger">Deletar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <!-- Modal expense -->
+    <div class="modal fade" id="modalDeleteExpense{{ expense.id }}" tabindex="-1" aria-labelledby="modalDeleteExpense{{ expense.id }}Label"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalDeleteExpense{{ expense.id }}Label">Confirmar exclusão</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Deseja realmente deletar '{{ expense.description }}'?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <a href="{% url 'financeapp:deleteexpenses' expense.id %}" class="btn btn-danger">Deletar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

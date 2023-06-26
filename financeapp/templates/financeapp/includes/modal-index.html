@@ -1,0 +1,195 @@
+<!-- modal revenue -->
+<div class="modal fade" id="ModalRevenue" tabindex="-1" role="dialog" aria-labelledby="ModalLabelRevenue">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title-md" id="ModalLabelRevenue">Adicionar Receita</h6>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form action="{% url 'financeapp:createearnings' %}" method="post" id="form-revenue">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                            <div class="col">
+                                <!-- Descrição -->
+                                <label for="description">Descrição</label>
+                                <input type="text" class="form-control" id="description" placeholder="Descrição"
+                                    name="description" required>
+                            </div>
+                            <div class="col">
+                                <!-- Valor -->
+                                <label for="value">Valor</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="value" placeholder="Valor" name="value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Data -->
+                                <label for="date">Data</label>
+                                <input type="date" class="form-control" id="date" placeholder="Data" name="date"
+                                    required>
+                            </div>
+                            <div class="col">
+                                <!-- Recorrente -->
+                                <label for="recurrent">Recorrente</label>
+                                <select class="form-control" id="recurrent" name="recurrent">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <!-- Categoria -->
+                                <label for="category">Categoria</label>
+                                <select class="form-control" id="category" name="category">
+                                    {% for categoryearning in categoryearnings %}
+                                    <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
+                                data-target="#categoryToggle" aria-expanded="false" aria-controls="categoryToggle">
+                                Adicionar / Remover Categorias
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse mt-3" id="categoryToggle">
+                        <div class="row">
+                            <div class="col">
+                                <form action="{% url 'financeapp:createcategoryearnings' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="newCategory">Nova Categoria</label>
+                                    <input type="text" class="form-control" id="newCategory"
+                                        placeholder="Digite o nome da nova categoria" name="description">
+                                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{% url 'financeapp:deletecategoryearnings' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="deleteCategory">Excluir Categoria</label>
+                                    <select class="form-control" id="deleteCategory" name="delete-category">
+                                        {% for categoryearning in categoryearnings %}
+                                        <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary" id="submit-form-revenue">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal expense -->
+<div class="modal fade" id="ModalExpense" tabindex="-1" role="dialog" aria-labelledby="ModalLabelExpense">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title-md" id="ModalLabelExpense">Adicionar Despesa</h6>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form action="{% url 'financeapp:createexpenses' %}" method="post" id="form-expense">
+                        {% csrf_token %}
+                        <div class="row form-group">
+                            <div class="col">
+                                <!-- Descrição -->
+                                <label for="description">Descrição</label>
+                                <input type="text" class="form-control" id="description" placeholder="Descrição"
+                                    name="description" required>
+                            </div>
+                            <div class="col">
+                                <!-- Valor -->
+                                <label for="value">Valor</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="value" placeholder="Valor" name="value">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Data -->
+                                <label for="date">Data</label>
+                                <input type="date" class="form-control" id="date" placeholder="Data" name="date"
+                                    required>
+                            </div>
+                            <div class="col">
+                                <!-- Expense recorrente -->
+                                <label for="recurrent">Recorrente</label>
+                                <select class="form-control" id="recurrent" name="recurrent">
+                                    <option value="0">Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <!-- Categoria -->
+                                <label for="category">Categoria</label>
+                                <select class="form-control" id="category" name="category">
+                                    {% for categoryexpense in categoryexpenses %}
+                                    <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
+                                data-target="#categoryToggle" aria-expanded="false" aria-controls="categoryToggle">
+                                Adicionar / Remover Categorias
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse mt-3" id="categoryToggle">
+                        <div class="row">
+                            <div class="col">
+                                <form action="{% url 'financeapp:createcategoryexpenses' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="newCategory">Nova Categoria</label>
+                                    <input type="text" class="form-control" id="newCategory"
+                                        placeholder="Digite o nome da nova categoria" name="description">
+                                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{% url 'financeapp:deletecategoryexpenses' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="deleteCategory">Excluir Categoria</label>
+                                    <select class="form-control" id="deleteCategory" name="delete-category">
+                                        {% for categoryexpense in categoryexpenses %}
+                                        <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary" id="submit-form-expense">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>

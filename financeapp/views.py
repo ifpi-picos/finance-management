@@ -154,3 +154,36 @@ def delete_expenses(request, id):
 
     messages.success(request, 'Despesa deletada com sucesso!')
     return HttpResponseRedirect('/extract')
+
+def update_earnings(request, id):
+    if request.method == 'POST':
+        earning = Earnings.objects.get(id=int(id))
+        earning.description = request.POST.get('description')
+        earning.value = convert_value(request.POST.get('value'))
+        earning.date = request.POST.get('date')
+        earning.recurrence = int(request.POST.get('recurrent'))
+        earning.category = CategoryEarnings.objects.get(
+            id=int(request.POST.get('category')
+            )
+        )
+        earning.save()
+
+        messages.success(request, 'Receita atualizada com sucesso!')
+        return HttpResponseRedirect('/extract')
+    
+def update_expenses(request, id):
+    if request.method == 'POST':
+        expense = Expenses.objects.get(id=int(id))
+        expense.description = request.POST.get('description')
+        expense.value = convert_value(request.POST.get('value'))
+        expense.date = request.POST.get('date')
+        expense.recurrence = int(request.POST.get('recurrent'))
+        expense.category = CategoryExpenses.objects.get(
+            id=int(request.POST.get('category')
+            )
+        )
+        expense.save()
+
+        messages.success(request, 'Despesa atualizada com sucesso!')
+        return HttpResponseRedirect('/extract')
+    

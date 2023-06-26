@@ -1,9 +1,6 @@
 {% extends "financeapp/index.html" %}
 {% load static %}
 {% block title %}Gestor de Finanças - Extrato{% endblock title %}
-{% block styles %}
-    <link rel="stylesheet" href="{% static 'css/extract.css' %}">
-{% endblock styles %}
 
 {% block nav %}
     <nav class="navbar navbar-expand-lg navbar-light bg-white pr-0">
@@ -44,24 +41,8 @@
             </thead>
             <tbody>
                 {% for earning in earnings %}
-                <!-- Modal earning -->
-                <div class="modal fade" id="deleteModalEarning" tabindex="-1"
-                    aria-labelledby="deleteModalEarningLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalEarning">Confirmar exclusão</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p>Deseja realmente deletar este item?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                <a href="{% url 'financeapp:deleteearnings' earning.id %}" class="btn btn-danger">Deletar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% include 'financeapp/includes/modal-confirm-delete.html' %}
+                {% include 'financeapp/includes/modal-edit.html' %}
                 <tr>
                     <td>{{ earning.description }}</td>
                     <td>R$ {{ earning.value }}</td>
@@ -75,10 +56,10 @@
                     </td>
                     <td>{{ earning.category }}</td>
                     <td>
-                        <a href="#" class="btn btn-info">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalUpdateEarning{{ earning.id }}">
                             <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <button type="button" id="delete-earning-modal" class="btn btn-danger">
+                        </button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteEarning{{ earning.id }}">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>
@@ -101,24 +82,8 @@
             </thead>
             <tbody>
                 {% for expense in expenses %}
-                <!-- Modal expense -->
-                <div class="modal fade" id="deleteModalExpense" tabindex="-1"
-                    aria-labelledby="deleteModalExpenseLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="deleteModalExpense">Confirmar exclusão</h5>
-                            </div>
-                            <div class="modal-body">
-                                <p>Deseja realmente deletar este item?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                <a href="{% url 'financeapp:deleteexpenses' expense.id %}" class="btn btn-danger">Deletar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% include 'financeapp/includes/modal-confirm-delete.html' %}
+                {% include 'financeapp/includes/modal-edit.html' %}
                 <tr>
                     <td>{{ expense.description }}</td>
                     <td>R$ {{ expense.value }}</td>
@@ -132,10 +97,10 @@
                     </td>
                     <td>{{ expense.category }}</td>
                     <td>
-                        <a href="#" class="btn btn-info">
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalUpdateExpense{{ expense.id }}">
                             <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <button type="button" id="delete-expense-modal" class="btn btn-danger">
+                        </button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDeleteExpense{{ expense.id }}">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </td>

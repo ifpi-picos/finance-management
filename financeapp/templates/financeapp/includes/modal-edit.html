@@ -1,0 +1,149 @@
+{% if earning %}
+<!-- modal revenue -->
+<div class="modal fade" id="modalUpdateEarning{{ earning.id }}" tabindex="-1" role="dialog" aria-labelledby="modalUpdateEarning{{ earning.id }}Label">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <form action="{% url 'financeapp:updateearnings' earning.id %}" method="post">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h6 class="modal-title-md" id="modalUpdateEarning{{ earning.id }}Label">Editar Receita</h6>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row form-group">
+                            <div class="col">
+                                <!-- Descrição -->
+                                <label for="description">Descrição</label>
+                                <input type="text" class="form-control" id="description" placeholder="Descrição" name="description" value="{{ earning.description }}" required>
+                            </div>
+                            <div class="col">
+                                <!-- Valor -->
+                                <label for="value">Valor</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="value" placeholder="Valor" name="value" value="{{ earning.value}}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Data -->
+                                <label for="date">Data</label>
+                                <input type="date" class="form-control" id="date" placeholder="Data" name="date" value="{{ earning.date|date:'Y-m-d' }}" required>
+                            </div>
+                            <div class="col">
+                                <!-- Recorrente -->
+                                <label for="recurrent">Recorrente</label>
+                                {% if earning.recurrence %}
+                                <select class="form-control" id="recurrent" name="recurrent">
+                                    <option value="0">Não</option>
+                                    <option value="1" selected>Sim</option>
+                                </select>
+                                {% else %}
+                                <select class="form-control" id="recurrent" name="recurrent">
+                                    <option value="0" selected>Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                <!-- Categoria -->
+                                <label for="category">Categoria</label>
+                                <select class="form-control" id="category" name="category">
+                                    {% for categoryearning in categoryearnings %}
+                                        {% if categoryearning.id == earning.category.id %}
+                                            <option value="{{ categoryearning.id }}" selected>{{ categoryearning.name }}</option>
+                                        {% else %}
+                                            <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<!-- modal expense -->
+<div class="modal fade" id="modalUpdateExpense{{ expense.id }}" tabindex="-1" role="dialog" aria-labelledby="modalUpdateExpense{{ expense.id }}Label">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <form action="{% url 'financeapp:updateexpenses' expense.id %}" method="post">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h6 class="modal-title-md" id="modalUpdateExpense{{ expense.id }}Label">Editar Despesa</h6>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row form-group">
+                            <div class="col">
+                                <!-- Descrição -->
+                                <label for="description">Descrição</label>
+                                <input type="text" class="form-control" id="description" placeholder="Descrição" name="description" value="{{ expense.description}}" required>
+                            </div>
+                            <div class="col">
+                                <!-- Valor -->
+                                <label for="value">Valor</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">R$</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="value" placeholder="Valor" name="value" value="{{ expense.value }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- Data -->
+                                <label for="date">Data</label>
+                                <input type="date" class="form-control" id="date" placeholder="Data" name="date" value="{{ expense.date|date:'Y-m-d' }}" required>
+                            </div>
+                            <div class="col">
+                                <!-- Expense recorrente -->
+                                <label for="recurrent">Recorrente</label>
+                                {% if expense.recurrence %}
+                                <select class="form-control" id="recurrent" name="recurrent">
+                                    <option value="0">Não</option>
+                                    <option value="1" selected>Sim</option>
+                                </select>
+                                {% else %}
+                                <select class="form-control" id="recurrent" name="recurrent">
+                                    <option value="0" selected>Não</option>
+                                    <option value="1">Sim</option>
+                                </select>
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                <!-- Categoria -->
+                                <label for="category">Categoria</label>
+                                <select class="form-control" id="category" name="category">
+                                    {% for categoryexpense in categoryexpenses %}
+                                        {% if categoryexpense.id == expense.category.id %}
+                                            <option value="{{ categoryexpense.id }}" selected>{{ categoryexpense.name }}</option>
+                                        {% else %}
+                                            <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
