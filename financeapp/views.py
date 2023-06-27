@@ -91,14 +91,17 @@ class DashboardApp(ListView):
         
         # Passando os dados para o template
         context['labels'] = labels
-        context['earnings_sum_list'] = earnings_sum
-        context['expenses_sum_list'] = expenses_sum
+        context['earnings_list'] = earnings_sum
+        context['expenses_list'] = expenses_sum
 
         decimal_sum_earning = decimal.Decimal(earnings.aggregate(total=Sum('value'))['total'] or 0)
         context['sum_earnings'] = decimal_sum_earning.quantize(decimal.Decimal('0.00'))
         decimal_sum_expenses = decimal.Decimal(expenses.aggregate(total=Sum('value'))['total'] or 0)
         context['sum_expenses'] = decimal_sum_expenses.quantize(decimal.Decimal('0.00'))
         context['balance'] = (decimal_sum_earning - decimal_sum_expenses).quantize(decimal.Decimal('0.00'))
+        
+        # Dados para o gráfico de pizza
+        context['doughnut_data'] = [int(context['sum_earnings']), int(context['sum_expenses'])]
 
         return context
 

@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
             {
                 label: 'Receita',
-                data: earningSum,
+                data: earningsList,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
                 label: 'Despesa',
-                data: expenseSum,
+                data: expensesList,
                 fill: false,
                 borderColor: 'rgb(255, 99, 132)',
                 tension: 0.1
@@ -40,14 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
           {
             label: 'Despesa',
-            data: earningSum,
+            data: earningsList,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor:  'rgb(255, 99, 132)',
             borderWidth: 1
           },
           {
             label: 'Receita',
-            data: expenseSum,
+            data: expensesList,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgb(75, 192, 192)',
             borderWidth: 1
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gráfico de rosca receita 
       const doughnutDataReceita = {
-        labels: ['Receita'],
+        labels: ['Receita', 'Despesa'],
         datasets: [{
-          label: labels,
-          data: earningSum,
+          label: [doughnutData[0], doughnutData[1]],
+          data: doughnutData,
           backgroundColor: [
             'rgb(75, 192, 192)',
             'rgb(255, 99, 132)'
@@ -94,10 +94,10 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Gráfico de rosca despesa
     const doughnutDataDespesa = {
-        labels: ['Despesa'],
+        labels: ['Receita', 'Receita'],
         datasets: [{
-          label: labels,
-          data: earningSum, expenseSum,
+          label: doughnutData[1],
+          data: doughnutData,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
