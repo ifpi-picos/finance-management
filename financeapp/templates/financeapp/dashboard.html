@@ -21,6 +21,7 @@
 {% block content %}
 <div class="row dashboard-content">
   <div class="col">
+
     <div class="row d-flex mt-3">
       <div class="col info-box bg-white mr-2">
         <span class="info-box-icon bg-warning"><i class="fas fa-landmark text-white-1" style="color: white;"></i></span>
@@ -44,13 +45,23 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col info-box bg-white mr-2 p-3">
-        
+    <div class="row d-flex">
+      <div class="col info-box bg-white mr-2">
+        <canvas id="barChartCol1"></canvas>
       </div>
       <div class="col info-box bg-white">
-        <canvas id="myChart">
-        </canvas>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+    <div class="row d-flex mt-3">
+      <div class="col info-box bg-white mr-2">
+
+      </div>
+      <div class="col info-box bg-white mr-2">
+        <canvas id="doughnutChart" class="chart"></canvas>
+      </div>
+      <div class="col info-box bg-white">
+        <canvas id="doughnutChart2" class="chart"></canvas>
       </div>
     </div>
   </div>
