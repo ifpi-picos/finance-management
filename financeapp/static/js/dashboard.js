@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const barras = document.getElementById('barChartCol1').getContext('2d');
     const doughnutReceita = document.getElementById('doughnutChart').getContext('2d');
     const doughnutDespesa = document.getElementById('doughnutChart2').getContext('2d');
+    earningSum = [parseInt(earningSum)]
+    expenseSum = [parseInt(expenseSum)]
 
     // Gráfico de linha 
     const data = {
@@ -10,14 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
             {
                 label: 'Receita',
-                data: earningSum,
+                data: earningSumList,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
                 label: 'Despesa',
-                data: expenseSum,
+                data: expenseSumList,
                 fill: false,
                 borderColor: 'rgb(255, 99, 132)',
                 tension: 0.1
@@ -40,14 +42,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
           {
             label: 'Despesa',
-            data: earningSum,
+            data: expenseSumList,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor:  'rgb(255, 99, 132)',
             borderWidth: 1
           },
           {
             label: 'Receita',
-            data: expenseSum,
+            data: earningSumList,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgb(75, 192, 192)',
             borderWidth: 1
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: ['Receita'],
         datasets: [{
           label: labels,
-          data: earningSum,
+          data: earningSum, expenseSum,
           backgroundColor: [
             'rgb(75, 192, 192)',
             'rgb(255, 99, 132)'

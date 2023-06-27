@@ -70,8 +70,10 @@
 {% block scripts %}
 <script>
   const labels = JSON.parse('{{ labels|escapejs }}');
-  const earningSum = JSON.parse('{{ earnings_sum_list|escapejs }}');
-  const expenseSum = JSON.parse('{{ expenses_sum_list|escapejs }}')
+  const earningSumList = JSON.parse('{{ earnings_sum_list|escapejs }}');
+  const expenseSumList = JSON.parse('{{ expenses_sum_list|escapejs }}');
+  const earningSum = JSON.parse('{{ sum_earnings|escapejs }}');
+  const expenseSum = JSON.parse('{{ sum_expenses|escapejs }}');
 </script>
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
