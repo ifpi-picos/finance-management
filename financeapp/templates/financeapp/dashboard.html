@@ -1,6 +1,23 @@
 {% extends "financeapp/index.html" %}
 {% load static %}
 {% block title %}Gestor de Finanças - Início{% endblock title %}
+{% block contentnav %}
+<form action="{% url 'financeapp:dashboard' %}" method="GET">
+    <div class="input-group input-group-sm">
+      <div class="input-group-prepend">
+        <span class="input-group-text">De</span>
+      </div>
+      <input type="date" class="form-control" aria-label="De" name="start_date" value="{{ start_date }}" required>
+      <div class="input-group-prepend">
+        <span class="input-group-text">Até</span>
+      </div>
+      <input type="date" class="form-control" aria-label="Até" name="end_date" value="{{ end_date }}" required>
+      <div class="input-group-append">
+        <button type="submit" class="btn btn-primary btn-block">Filtrar</button>
+      </div>
+    </div>
+</form>
+{% endblock contentnav %}
 {% block content %}
 <div class="row dashboard-content">
   <div class="col">
@@ -9,38 +26,27 @@
         <span class="info-box-icon bg-warning"><i class="fas fa-landmark text-white-1" style="color: white;"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Saldo</span>
-          <span class="info-box-number">R$ 1,410</span>
+          <span class="info-box-number">R$ {{balance}}</span>
         </div>
       </div>
       <div class="col info-box bg-white mr-2">
-        <span class="info-box-icon bg-success"><i class="fas fa-smile"></i></span>
+        <span class="info-box-icon bg-success"><i class="fas fa-dollar-sign"></i></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Receita</span>
-          <span class="info-box-number">R$ 1,410</span>
-        </div>
-      </div>
-      <div class="col info-box bg-white mr-2">
-        <span class="info-box-icon bg-danger"><i class="fas fa-frown"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Despesas</span>
-          <span class="info-box-number">R$ 1,410</span>
+          <span class="info-box-number">R$ {{sum_earnings}}</span>
         </div>
       </div>
       <div class="col info-box bg-white">
-        <span class="info-box-icon bg-danger"><i class="fas fa-frown"></i></span>
+        <span class="info-box-icon bg-danger"><i class="fas fa-hand-holding-usd"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Despesas</span>
-          <span class="info-box-number">R$ 1,410</span>
+          <span class="info-box-number">R$ {{sum_expenses}}</span>
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col info-box bg-white mr-2">
-        <span class="info-box-icon bg-warning"><i class="fas fa-landmark text-white-1" style="color: white;"></i></span>
-        <div class="info-box-content">
-          <span class="info-box-text">Saldo</span>
-          <span class="info-box-number">R$ 1,410</span>
-        </div>
+      <div class="col info-box bg-white mr-2 p-3">
+        
       </div>
       <div class="col info-box bg-white">
         <canvas id="myChart">
@@ -52,50 +58,10 @@
 {% endblock content %}
 {% block scripts %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const labels = [
-          'Janeiro',
-          'Fevereiro',
-          'Março',
-          'Abril',
-          'Maio',
-          'Junho',
-          'Julho',
-          'Agosto',
-          'Setembro',
-          'Outubro',
-          'Novembro',
-          'Dezembro'
-        ];
-    const data = {
-      labels: labels,
-      datasets: [{
-        label: 'Receita',
-        data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      },
-      {
-        labels: labels,
-        label: 'Despesa',
-        data: [1, 500, 50, 1000, 5000, 600, 700, 800, 900, 400, 589, 3800],
-        fill: false,
-        borderColor: 'rgb(255, 99, 132)',
-        tension: 0.1
-      }
-    
-    ]
-    };
-    
-    const config = {
-      type: 'line',
-      data: data,
-      options: {}
-    };
-    new Chart(ctx, config);
-  });
+  const labels = JSON.parse('{{ labels|escapejs }}');
+  const earningSum = JSON.parse('{{ earnings_sum_list|escapejs }}');
+  const expenseSum = JSON.parse('{{ expenses_sum_list|escapejs }}')
 </script>
+<script src="{% static 'js/dashboard.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock scripts %}

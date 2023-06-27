@@ -17,13 +17,20 @@
                 </div>
                 <div class="form-group">
                     <label for="end_date">Data Final:</label>
-                    <input type="date" class="form-control mx-2" id="end_date" name="end_date" value="{{ end_date}}">
+                    <input type="date" class="form-control mx-2" id="end_date" name="end_date" value="{{ end_date }}">
                 </div>
                 <button type="submit" class="btn btn-primary">Filtrar</button>
             </form>
         </div>
     </nav>
 {% endblock nav %}
+
+{% block contentnav %}
+    <form class="form-inline my-2 my-lg-0" action="{% url 'financeapp:extract' %}" method="GET">
+        <input class="form-control mr-sm-2" name="search" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+    </form>
+{% endblock contentnav %}
 
 {% block content %}
     <div class="table-extract pt-5">

@@ -28,10 +28,7 @@
 
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav mr-auto"></ul>
-            <form class="form-inline my-2 my-lg-0" action="{% url 'financeapp:extract' %}" method="GET">
-                <input class="form-control mr-sm-2" name="search" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
+            {% block contentnav %}{% endblock %}
         </div>
     </nav>
     

@@ -5,16 +5,103 @@ from financeapp.models import CategoryEarnings, CategoryExpenses, Earnings, Expe
 from django.contrib import messages
 from django.db.models import Q
 import decimal
-
+from datetime import datetime
+import json
+from django.db.models import Sum
+from django.db.models import QuerySet
 
 class DashboardApp(ListView):
     template_name = 'financeapp/dashboard.html'
     model = Earnings
 
+    def get_sums_data_and_labels(self, earnings: QuerySet, expenses: QuerySet, start_date: str, end_date: str):
+        # Passanso a data de string para datetime e pegando a quantidade de meses
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        months = (end_date.year - start_date.year) * 12 + (end_date.month - start_date.month)
+        
+        # Mapeamento dos nomes dos meses em português
+        month_names = {
+            1: 'Janeiro',
+            2: 'Fevereiro',
+            3: 'Março',
+            4: 'Abril',
+            5: 'Maio',
+            6: 'Junho',
+            7: 'Julho',
+            8: 'Agosto',
+            9: 'Setembro',
+            10: 'Outubro',
+            11: 'Novembro',
+            12: 'Dezembro'
+        }
+        # Pegando os dados dos ganhos e gastos referente ao período e os labels
+        labels = []
+        earnings_sum = []
+        expenses_sum = []
+
+        for i in range(months + 1):
+            month = (start_date.month + i) % 12
+            if month == 0:
+                month = 12
+            month_name = month_names[month]
+            labels.append(month_name)
+
+            earnings_month_sum = earnings.filter(date__month=month).aggregate(total=Sum('value'))['total'] or 0
+            earnings_sum.append(int(earnings_month_sum))
+
+            expenses_month_sum = expenses.filter(date__month=month).aggregate(total=Sum('value'))['total'] or 0
+            expenses_sum.append(int(expenses_month_sum))
+
+        return labels, earnings_sum, expenses_sum
+
     def get_context_data(self, **kwargs):
+        # Feito e comentado por: Jean Carlos
         context = super().get_context_data(**kwargs)
         context['categoryearnings'] = CategoryEarnings.objects.all()
         context['categoryexpenses'] = CategoryExpenses.objects.all()
+
+        # Pegando a data de início e fim passada pelo usuário
+        user_start_date = self.request.GET.get('start_date')
+        user_end_date = self.request.GET.get('end_date')
+
+        # Pegando a data de início e fim do ano atual, caso não seja passado pelo usuário
+        if user_start_date or user_end_date:
+            start_date = user_start_date 
+            end_date = user_end_date
+        else:
+            start_date = datetime.strftime(datetime(datetime.now().year, 1, 1).date(), '%Y-%m-%d')
+            end_date = datetime.now().date().strftime('%Y-%m-%d')
+        
+        # Passando a data para o template
+        context['start_date'] = start_date
+        context['end_date'] = end_date
+
+        # Dados dos ganhos e gastos referente ao período
+        earnings = Earnings.objects.filter(date__range=[start_date, end_date])
+        expenses = Expenses.objects.filter(date__range=[start_date, end_date])
+
+        print(type(earnings))
+              
+
+        # Pegando os dados dos ganhos e gastos referente ao período e os labels
+        labels, earnings_sum, expenses_sum = self.get_sums_data_and_labels(earnings, expenses, start_date, end_date)   
+
+        # Passando os dados para json, para serem usados no gráfico
+        labels = json.dumps(labels)
+        earnings_sum = json.dumps(earnings_sum)
+        expenses_sum = json.dumps(expenses_sum)
+        
+        # Passando os dados para o template
+        context['labels'] = labels
+        context['earnings_sum_list'] = earnings_sum
+        context['expenses_sum_list'] = expenses_sum
+
+        decimal_sum_earning = decimal.Decimal(earnings.aggregate(total=Sum('value'))['total'] or 0)
+        context['sum_earnings'] = decimal_sum_earning.quantize(decimal.Decimal('0.00'))
+        decimal_sum_expenses = decimal.Decimal(expenses.aggregate(total=Sum('value'))['total'] or 0)
+        context['sum_expenses'] = decimal_sum_expenses.quantize(decimal.Decimal('0.00'))
+        context['balance'] = (decimal_sum_earning - decimal_sum_expenses).quantize(decimal.Decimal('0.00'))
 
         return context
 
@@ -57,9 +144,10 @@ class ExtractApp(ListView):
 
         context['earnings'] = earnings
         context['expenses'] = expenses
+
         return context
 
-def convert_value(value):
+def convert_value(value: str):
 
     if ',' in value:
         value = value.replace('.', '').replace(',', '.')
