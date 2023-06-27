@@ -11,12 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
             {
                 label: 'Receita',
                 data: earningsList,
+                data: earningsList,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
                 label: 'Despesa',
+                data: expensesList,
                 data: expensesList,
                 fill: false,
                 borderColor: 'rgb(255, 99, 132)',
@@ -71,10 +73,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gráfico de rosca receita 
       const doughnutDataReceita = {
-        labels: ['Receita'],
+        labels: ['Receita', 'Despesa'],
         datasets: [{
           label: labels,
-          data: doughnutData,
+          data: earningSum,
           backgroundColor: [
             'rgb(75, 192, 192)',
             'rgb(255, 99, 132)'
@@ -94,10 +96,10 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Gráfico de rosca despesa
     const doughnutDataDespesa = {
-        labels: ['Despesa'],
+        labels: ['Receita', 'Receita'],
         datasets: [{
           label: labels,
-          data: doughnutData,
+          data: earningSum, expenseSum,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',

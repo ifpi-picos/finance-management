@@ -71,11 +71,11 @@
 <script>
   // Gráfico de barras e linhas 
   const labels = JSON.parse('{{ labels|escapejs }}');
+  // Gráfico de barras e linha
   const earningsList = JSON.parse('{{ earnings_list|escapejs }}');
-  const expensesList = JSON.parse('{{ expenses_list|escapejs }}');
-  // Gráfico de rosca
+  const expensesList = JSON.parse('{{ expenses_list|escapejs }}')
+  // Gráfico de pizza
   const doughnutData = JSON.parse('{{ doughnut_data|escapejs }}');
-
 </script>
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
