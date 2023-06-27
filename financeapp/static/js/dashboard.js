@@ -26,8 +26,12 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const config = {
-        type: 'line',
-        data: data,
+      type: 'line',
+      data: data, 
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
     };
 
     // Gráfico de barras 
@@ -55,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'bar',
         data: barCol1Data,
         options: {
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             y: {
               beginAtZero: true
@@ -80,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const doughnutConfigReceita = {
         type: 'doughnut',
         data: doughnutDataReceita,
-        options: {}
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
       };
     
     // Gráfico de rosca despesa
@@ -100,7 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
       const doughnutConfigDespesa = {
         type: 'doughnut',
         data: doughnutDataReceita,
-        options: {}
+        options: {
+          responsive: true,
+          maintainAspectRatio: false
+        }
       };
 
     new Chart(lineChart, config);
