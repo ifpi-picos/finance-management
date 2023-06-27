@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: ['Receita', 'Despesa'],
         datasets: [{
           label: labels,
-          data: earningSum,
+          data: doughnutData,
           backgroundColor: [
             'rgb(75, 192, 192)',
             'rgb(255, 99, 132)'
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: ['Receita', 'Receita'],
         datasets: [{
           label: labels,
-          data: earningSum, expenseSum,
+          data: doughnutData,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
