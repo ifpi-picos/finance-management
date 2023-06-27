@@ -32,20 +32,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gráfico de barras 
     const barCol1Data = {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        labels: labels,
         datasets: [
           {
             label: 'Despesa',
-            data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 2000, 3000],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgb(75, 192, 192)',
+            data: earningSum,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor:  'rgb(255, 99, 132)',
             borderWidth: 1
           },
           {
             label: 'Receita',
-            data: [50, 100, 200, 150, 300, 250, 400, 350, 500, 450, 600, 550],
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            borderColor: 'rgb(255, 99, 132)',
+            data: expenseSum,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgb(75, 192, 192)',
             borderWidth: 1
           }
         ]
@@ -65,13 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Gráfico de rosca receita 
       const doughnutDataReceita = {
-        labels: ['Receita', 'Despesa'],
+        labels: ['Receita'],
         datasets: [{
-          label: 'My First Dataset',
-          data: [300, 50, 100],
+          label: labels,
+          data: earningSum,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
             'rgb(75, 192, 192)',
+            'rgb(255, 99, 132)'
           ],
           hoverOffset: 4
         }]
@@ -85,12 +85,12 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // Gráfico de rosca despesa
     const doughnutDataDespesa = {
-        labels: ['Receita', 'Despesa'],
+        labels: ['Despesa'],
         datasets: [{
-          label: 'My First Dataset',
-          data: [300, 50, 100],
+          label: labels,
+          data: earningSum, expenseSum,
           backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
+            'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
           ],
           hoverOffset: 4
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
       const doughnutConfigDespesa = {
         type: 'doughnut',
-        data: doughnutDataReceita,
+        data: doughnutDataDespesa,
         options: {}
       };
 
