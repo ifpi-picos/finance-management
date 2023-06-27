@@ -81,9 +81,6 @@ class DashboardApp(ListView):
         earnings = Earnings.objects.filter(date__range=[start_date, end_date])
         expenses = Expenses.objects.filter(date__range=[start_date, end_date])
 
-        print(type(earnings))
-              
-
         # Pegando os dados dos ganhos e gastos referente ao período e os labels
         labels, earnings_sum, expenses_sum = self.get_sums_data_and_labels(earnings, expenses, start_date, end_date)   
 
