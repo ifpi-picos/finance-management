@@ -69,11 +69,13 @@
 {% endblock content %}
 {% block scripts %}
 <script>
+  // Gráfico de barras e linhas 
   const labels = JSON.parse('{{ labels|escapejs }}');
-  const earningSumList = JSON.parse('{{ earnings_sum_list|escapejs }}');
-  const expenseSumList = JSON.parse('{{ expenses_sum_list|escapejs }}');
-  const earningSum = JSON.parse('{{ sum_earnings|escapejs }}');
-  const expenseSum = JSON.parse('{{ sum_expenses|escapejs }}');
+  const earningsList = JSON.parse('{{ earnings_list|escapejs }}');
+  const expensesList = JSON.parse('{{ expenses_list|escapejs }}');
+  // Gráfico de rosca
+  const doughnutData = JSON.parse('{{ doughnut_data|escapejs }}');
+
 </script>
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

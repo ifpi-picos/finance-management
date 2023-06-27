@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const barras = document.getElementById('barChartCol1').getContext('2d');
     const doughnutReceita = document.getElementById('doughnutChart').getContext('2d');
     const doughnutDespesa = document.getElementById('doughnutChart2').getContext('2d');
-    earningSum = [parseInt(earningSum)]
-    expenseSum = [parseInt(expenseSum)]
 
     // Gráfico de linha 
     const data = {
@@ -12,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
             {
                 label: 'Receita',
-                data: earningSumList,
+                data: earningsList,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
                 label: 'Despesa',
-                data: expenseSumList,
+                data: expensesList,
                 fill: false,
                 borderColor: 'rgb(255, 99, 132)',
                 tension: 0.1
@@ -42,14 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
         datasets: [
           {
             label: 'Despesa',
-            data: expenseSumList,
+            data: expensesList,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor:  'rgb(255, 99, 132)',
             borderWidth: 1
           },
           {
             label: 'Receita',
-            data: earningSumList,
+            data: earningsList,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgb(75, 192, 192)',
             borderWidth: 1
@@ -76,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: ['Receita'],
         datasets: [{
           label: labels,
-          data: earningSum, expenseSum,
+          data: doughnutData,
           backgroundColor: [
             'rgb(75, 192, 192)',
             'rgb(255, 99, 132)'
@@ -99,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         labels: ['Despesa'],
         datasets: [{
           label: labels,
-          data: earningSum, expenseSum,
+          data: doughnutData,
           backgroundColor: [
             'rgb(255, 99, 132)',
             'rgb(75, 192, 192)',
