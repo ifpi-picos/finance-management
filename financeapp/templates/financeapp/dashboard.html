@@ -2,6 +2,9 @@
 {% load static %}
 {% block title %}Gestor de Finanças - Início{% endblock title %}
 {% block contentnav %}
+<button class="btn btn-outline-info mr-3" data-toggle="modal" data-target="#modalFilters">
+  <i class="fas fa-filter"></i>
+</button>
 <form action="{% url 'financeapp:dashboard' %}" method="GET">
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
@@ -54,14 +57,17 @@
       </div>
     </div>
     <div class="row d-flex">
-      <div class="col info-box bg-white mr-2 flex-grow-1" style="height: 30vh;">
+      <div class="col info-box bg-white mr-2 flex-grow-1" style="height: 40vh;">
 
       </div>
-      <div class="col-2 info-box bg-white mr-2" style="height: 30vh;">
-        <canvas id="doughnutChart" class="chart"></canvas>
+      <div class="col-2 info-box bg-white mr-2" style="height: 40vh;">
+        <canvas id="doughnutChartEarnings" class="chart"></canvas>
       </div>
-      <div class="col-2 info-box bg-white" style="height: 30vh;">
-        <canvas id="doughnutChart2" class="chart"></canvas>
+      <div class="col-2 info-box bg-white mr-2" style="height: 40vh;">
+        <canvas id="doughnutChartExpenses" class="chart"></canvas>
+      </div>
+      <div class="col-3 info-box bg-white" style="height: 40vh;">
+        <canvas id="radarChart" class="chart"></canvas>
       </div>
     </div>
   </div>
@@ -75,8 +81,15 @@
   const earningsList = JSON.parse('{{ earnings_list|escapejs }}');
   const expensesList = JSON.parse('{{ expenses_list|escapejs }}')
   // Gráfico de pizza
-  const doughnutData = JSON.parse('{{ doughnut_data|escapejs }}');
+  const categoryEarnings = JSON.parse('{{ category_earnings|escapejs }}');
+  const categoryExpenses = JSON.parse('{{ category_expenses|escapejs }}');
+  const dataEarningsCategory = JSON.parse('{{ data_earnings_category|escapejs }}');
+  const dataExpensesCategory = JSON.parse('{{ data_expenses_category|escapejs }}');
 </script>
 <script src="{% static 'js/dashboard.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock scripts %}
+
+{% block modal %}
+  {% include 'financeapp/includes/modal-filters.html' %}
+{% endblock modal %}

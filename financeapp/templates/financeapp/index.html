@@ -100,7 +100,7 @@
             </div>
 
             <!-- conteúdo -->
-            <div class="col-md-10 content bg-light pl-0">
+            <div class="col-md-10 container-fluid bg-light pl-0">
                 {% block nav %}{% endblock %}
                 <div class="container">
                     {% if messages %}
@@ -120,6 +120,7 @@
     </div>
     <!-- modal -->
     {% include 'financeapp/includes/modal-index.html' %}
+    {% block modal %}{% endblock %}
 </body>
 <!-- bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -130,5 +131,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
 <!-- scripts -->
 <script src="{% static 'js/main.js' %}"></script>
+<script>
+    setTimeout(function () {
+        $(".alert").alert('close');
+    }, 3000);
+</script>
 {% block scripts %}{% endblock %}
 </html>

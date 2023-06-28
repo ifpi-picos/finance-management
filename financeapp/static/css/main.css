@@ -10,12 +10,6 @@
     border-radius: 2px;
 }
 
-/* content */
-
-.content {
-    height: calc(100vh - 56px) !important;
-}
-
 /* sidebar */
 
 .sidebar {

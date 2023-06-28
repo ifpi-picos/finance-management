@@ -54,6 +54,28 @@ class DashboardApp(ListView):
             expenses_sum.append(int(expenses_month_sum))
 
         return labels, earnings_sum, expenses_sum
+    
+    def get_data_based_on_category(self, earnings: QuerySet, expenses: QuerySet, start_date: str, end_date: str):
+        categoryExpenses = list(CategoryExpenses.objects.values_list('name', flat=True))
+        categoryEarnings = list(CategoryEarnings.objects.values_list('name', flat=True))
+
+        dataEarning = []
+        dataExpenses = []
+
+        for category in categoryEarnings:
+            category_sum = earnings.filter(category__name=category, date__range=[start_date, end_date]).aggregate(total=Sum('value'))['total'] or 0
+            dataEarning.append(int(category_sum))
+
+        for category in categoryExpenses:
+            category_sum = expenses.filter(category__name=category, date__range=[start_date, end_date]).aggregate(total=Sum('value'))['total'] or 0
+            dataExpenses.append(int(category_sum))
+        
+        return (
+                json.dumps(categoryExpenses), 
+                json.dumps(categoryEarnings), 
+                json.dumps(dataEarning), 
+                json.dumps(dataExpenses)
+            )
 
     def get_context_data(self, **kwargs):
         # Feito e comentado por: Jean Carlos
@@ -81,6 +103,16 @@ class DashboardApp(ListView):
         earnings = Earnings.objects.filter(date__range=[start_date, end_date])
         expenses = Expenses.objects.filter(date__range=[start_date, end_date])
 
+        if self.request.method == 'GET':
+            filters_category_earnings = self.request.GET.getlist('categoryEarnings')
+            filters_category_expenses = self.request.GET.getlist('categoryExpenses')
+
+            if filters_category_earnings:
+                earnings = earnings.filter(category__id__in=filters_category_earnings)
+            if filters_category_expenses:
+                expenses = expenses.filter(category__id__in=filters_category_expenses)
+
+
         # Pegando os dados dos ganhos e gastos referente ao período e os labels
         labels, earnings_sum, expenses_sum = self.get_sums_data_and_labels(earnings, expenses, start_date, end_date)   
 
@@ -101,10 +133,11 @@ class DashboardApp(ListView):
         context['balance'] = (decimal_sum_earning - decimal_sum_expenses).quantize(decimal.Decimal('0.00'))
         
         # Dados para o gráfico de pizza
-        context['doughnut_data'] = [int(context['sum_earnings']), int(context['sum_expenses'])]
-
-        # Dados para o gráfico de rosca
-        context['doughnut_data'] = [int(context['sum_earnings']), int(context['sum_expenses'])]
+        categoryExpenses, categoryEarnings, data_earnings_category, data_expenses_category = self.get_data_based_on_category(earnings, expenses, start_date, end_date)
+        context['category_earnings'] = categoryEarnings
+        context['category_expenses'] = categoryExpenses
+        context['data_earnings_category'] = data_earnings_category
+        context['data_expenses_category'] = data_expenses_category
 
         return context
 

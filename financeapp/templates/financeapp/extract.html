@@ -33,7 +33,7 @@
 {% endblock contentnav %}
 
 {% block content %}
-    <div class="table-extract pt-5">
+    <div class="table-extract pt-3">
         <h6>GANHOS</h6>
         <table class="table">
             <thead>
@@ -51,7 +51,13 @@
                 {% include 'financeapp/includes/modal-confirm-delete.html' %}
                 {% include 'financeapp/includes/modal-edit.html' %}
                 <tr>
-                    <td>{{ earning.description }}</td>
+                    <td>
+                        {% if earning.description|length > 30 %}
+                            {{ earning.description|slice:":30" }}...
+                        {% else %}
+                            {{ earning.description }}
+                        {% endif %}
+                    </td>
                     <td>R$ {{ earning.value }}</td>
                     <td>{{ earning.date }}</td>
                     <td>
@@ -92,7 +98,13 @@
                 {% include 'financeapp/includes/modal-confirm-delete.html' %}
                 {% include 'financeapp/includes/modal-edit.html' %}
                 <tr>
-                    <td>{{ expense.description }}</td>
+                    <td>
+                        {% if expense.description|length > 30 %}
+                        {{ expense.description|slice:":30" }}...
+                        {% else %}
+                        {{ expense.description }}
+                        {% endif %}
+                    </td>
                     <td>R$ {{ expense.value }}</td>
                     <td>{{ expense.date }}</td>
                     <td>

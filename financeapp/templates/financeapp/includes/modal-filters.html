@@ -1,0 +1,47 @@
+<div class="modal fade" id="modalFilters" tabindex="-1" aria-labelledby="modalFiltersLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalFiltersLabel">Filtros</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="GET" action="{% url 'financeapp:dashboard' %}">
+                    <div class="form-group">
+                        <label for="categoryEarnings">Categorias de Receitas:</label>
+                        <br>
+                        {% for categoryearning in categoryearnings %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoryEarnings"
+                                id="categoryEarning{{ categoryearning.id }}" value="{{ categoryearning.id }}">
+                            <label class="form-check-label" for="categoryEarning{{ categoryearning.id }}">
+                                {{ categoryearning.name }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label for="categoryExpenses">Categorias de Despesas:</label>
+                        <br>
+                        {% for categoryexpense in categoryexpenses %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="categoryExpenses"
+                                id="categoryExpense{{ categoryexpense.id }}" value="{{ categoryexpense.id }}">
+                            <label class="form-check-label" for="categoryExpense{{ categoryexpense.id }}">
+                                {{ categoryexpense.name }}
+                            </label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Adicione mais categorias com caixas de seleção aqui -->
+                    <button type="submit" id="btn-filter" class="btn btn-primary">Filtrar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
