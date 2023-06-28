@@ -1,60 +1,56 @@
-
-  
 .icon-background-yellow {
-    background-color: yellow;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 10%;
-  }
-  
-  .icon-background-green {
-    background-color: green;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 10%;
-  }
-  
-  .icon-background-red {
-    background-color: red;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    width: 10%;
-  }
+  background-color: yellow;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 10%;
+}
+
+.icon-background-green {
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 10%;
+}
+
+.icon-background-red {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 10%;
+}
 
 .text-white-1 {
-    display: flex;
-    color: white;
-    font-size: 1.2rem;
-    justify-content: center;
-    align-items: center;
-    
+  display: flex;
+  color: white;
+  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .text-white-2 {
-    display: flex;
-    color: white;
-    font-size: 1.2rem;
-    justify-content: center;
-    align-items: center;
-    
+  display: flex;
+  color: white;
+  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .text-white-3 {
-    display: flex;
-    color: white;
-    font-size: 1.2rem;
-    justify-content: center;
-    align-items: center;
-    
+  display: flex;
+  color: white;
+  font-size: 1.2rem;
+  justify-content: center;
+  align-items: center;
+
 }
 
-/* Ultimos lançamentos */
 .info-box::-webkit-scrollbar {
   width: 0;
   height: 0;
   background-color: #F5F5F5;
 }
-
