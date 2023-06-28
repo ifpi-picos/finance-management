@@ -87,12 +87,17 @@ document.addEventListener('DOMContentLoaded', function () {
     data: doughnutDataEarnings,
     options: {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Receitas'
+        }
+      }
     }
   };
 
   // Gráfico de rosca despesa
-
   const doughnutDataExpenses = {
     labels: categoryExpenses,
     datasets: [{
@@ -107,7 +112,13 @@ document.addEventListener('DOMContentLoaded', function () {
     data: doughnutDataExpenses,
     options: {
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Despesas'
+        }
+      }
     }
   };
 

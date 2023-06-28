@@ -55,10 +55,23 @@ class DashboardApp(ListView):
 
         return labels, earnings_sum, expenses_sum
     
-    def get_data_based_on_category(self, earnings: QuerySet, expenses: QuerySet, start_date: str, end_date: str):
-        categoryExpenses = list(CategoryExpenses.objects.values_list('name', flat=True))
-        categoryEarnings = list(CategoryEarnings.objects.values_list('name', flat=True))
-
+    def get_data_based_on_category(self, earnings: QuerySet, expenses: QuerySet, start_date: str, end_date: str, filters_category_earnings: list, filters_category_expenses: list):
+        
+        # Verificando a necessidade de filtrar por categoria
+        if not filters_category_earnings and not filters_category_expenses:
+            categoryEarnings = list(CategoryEarnings.objects.values_list('name', flat=True))
+            categoryExpenses = list(CategoryExpenses.objects.values_list('name', flat=True))
+        else:
+            if filters_category_earnings and filters_category_expenses:
+                categoryEarnings = list(CategoryEarnings.objects.filter(id__in=filters_category_earnings).values_list('name', flat=True))
+                categoryExpenses = list(CategoryExpenses.objects.filter(id__in=filters_category_expenses).values_list('name', flat=True))
+            elif filters_category_earnings:
+                categoryEarnings = list(CategoryEarnings.objects.filter(id__in=filters_category_earnings).values_list('name', flat=True))
+                categoryExpenses = list(CategoryExpenses.objects.values_list('name', flat=True))
+            elif filters_category_expenses:
+                categoryEarnings = list(CategoryEarnings.objects.values_list('name', flat=True))
+                categoryExpenses = list(CategoryExpenses.objects.filter(id__in=filters_category_expenses).values_list('name', flat=True))
+                
         dataEarning = []
         dataExpenses = []
 
@@ -126,14 +139,21 @@ class DashboardApp(ListView):
         context['earnings_list'] = earnings_sum
         context['expenses_list'] = expenses_sum
 
-        decimal_sum_earning = decimal.Decimal(earnings.aggregate(total=Sum('value'))['total'] or 0)
-        context['sum_earnings'] = decimal_sum_earning.quantize(decimal.Decimal('0.00'))
-        decimal_sum_expenses = decimal.Decimal(expenses.aggregate(total=Sum('value'))['total'] or 0)
-        context['sum_expenses'] = decimal_sum_expenses.quantize(decimal.Decimal('0.00'))
-        context['balance'] = (decimal_sum_earning - decimal_sum_expenses).quantize(decimal.Decimal('0.00'))
+        # Dados para o resumo do período
+        context['sum_earnings'] = decimal.Decimal(earnings.aggregate(total=Sum('value'))['total'] or 0).quantize(decimal.Decimal('0.00'))
+        context['sum_expenses'] = decimal.Decimal(expenses.aggregate(total=Sum('value'))['total'] or 0).quantize(decimal.Decimal('0.00'))
+        context['balance'] = (context['sum_earnings'] - context['sum_expenses']).quantize(decimal.Decimal('0.00'))
         
         # Dados para o gráfico de pizza
-        categoryExpenses, categoryEarnings, data_earnings_category, data_expenses_category = self.get_data_based_on_category(earnings, expenses, start_date, end_date)
+        categoryExpenses, categoryEarnings, data_earnings_category, data_expenses_category = self.get_data_based_on_category(
+            earnings, 
+            expenses, 
+            start_date, 
+            end_date,
+            filters_category_earnings,
+            filters_category_expenses
+        )
+
         context['category_earnings'] = categoryEarnings
         context['category_expenses'] = categoryExpenses
         context['data_earnings_category'] = data_earnings_category

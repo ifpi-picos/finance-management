@@ -2,9 +2,6 @@
 {% load static %}
 {% block title %}Gestor de Finanças - Início{% endblock title %}
 {% block contentnav %}
-<button class="btn btn-outline-info mr-3" data-toggle="modal" data-target="#modalFilters">
-  <i class="fas fa-filter"></i>
-</button>
 <form action="{% url 'financeapp:dashboard' %}" method="GET">
     <div class="input-group input-group-sm">
       <div class="input-group-prepend">
@@ -20,6 +17,9 @@
       </div>
     </div>
 </form>
+<button class="btn btn-outline-info ml-4" data-toggle="modal" data-target="#modalFilters">
+  <i class="fas fa-filter"></i>
+</button>
 {% endblock contentnav %}
 {% block content %}
 <div class="row dashboard-content">
