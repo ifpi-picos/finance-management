@@ -20,6 +20,13 @@ hr {
     background-color: black;
 }
 
+/* container-fluid */
+
+.container-fluid {
+    min-height: calc(100vh - 56px) !important;
+}
+
+/* tamanho da fonte de acordo com o tamanho de tela */
 
 .btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
     font-size: 1vw;
@@ -28,6 +35,8 @@ hr {
 #extract, #dashboard {
     font-size: 1vw;
 }
+
+/* usuário */
 
 .rounded-circle{
     width: 10vw; 
