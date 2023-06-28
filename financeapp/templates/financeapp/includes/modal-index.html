@@ -6,7 +6,7 @@
                 <h6 class="modal-title-md" id="ModalLabelRevenue">Adicionar Receita</h6>
             </div>
             <div class="modal-body">
-                <div class="container-fluid">
+                <div class="container">
                     <form action="{% url 'financeapp:createearnings' %}" method="post" id="form-revenue">
                         {% csrf_token %}
                         <div class="row form-group">
@@ -104,7 +104,7 @@
                 <h6 class="modal-title-md" id="ModalLabelExpense">Adicionar Despesa</h6>
             </div>
             <div class="modal-body">
-                <div class="container-fluid">
+                <div class="container">
                     <form action="{% url 'financeapp:createexpenses' %}" method="post" id="form-expense">
                         {% csrf_token %}
                         <div class="row form-group">

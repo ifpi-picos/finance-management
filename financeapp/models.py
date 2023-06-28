@@ -29,6 +29,7 @@ class Earnings(models.Model):
     date = models.DateField(verbose_name='Data')
     recurrence = models.BooleanField(default=False, verbose_name='Recorrência')
     category = models.ForeignKey(CategoryEarnings, on_delete=models.CASCADE, verbose_name='Categoria')
+    type = models.CharField(max_length=15, verbose_name='Tipo', default='earning')
 
     def __str__(self):
         return self.description
@@ -44,6 +45,7 @@ class Expenses(models.Model):
     date = models.DateField(verbose_name='Data')
     recurrence = models.BooleanField(default=False, verbose_name='Despesa recorrente')
     category = models.ForeignKey(CategoryExpenses, on_delete=models.CASCADE, verbose_name='Categoria')
+    type = models.CharField(max_length=100, verbose_name='Tipo', default='expense')
 
     def __str__(self):
         return self.description

@@ -50,3 +50,11 @@
     align-items: center;
     
 }
+
+/* Ultimos lançamentos */
+.info-box::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background-color: #F5F5F5;
+}
+

@@ -71,7 +71,7 @@ class DashboardApp(ListView):
             elif filters_category_expenses:
                 categoryEarnings = list(CategoryEarnings.objects.values_list('name', flat=True))
                 categoryExpenses = list(CategoryExpenses.objects.filter(id__in=filters_category_expenses).values_list('name', flat=True))
-                
+
         dataEarning = []
         dataExpenses = []
 
@@ -116,6 +116,8 @@ class DashboardApp(ListView):
         earnings = Earnings.objects.filter(date__range=[start_date, end_date])
         expenses = Expenses.objects.filter(date__range=[start_date, end_date])
 
+        context['earnings_and_expenses'] = earnings.union(expenses).order_by('-date')
+        
         if self.request.method == 'GET':
             filters_category_earnings = self.request.GET.getlist('categoryEarnings')
             filters_category_expenses = self.request.GET.getlist('categoryExpenses')
@@ -198,8 +200,8 @@ class ExtractApp(ListView):
                 earnings = earnings.filter(date__lte=end_date)
                 expenses = expenses.filter(date__lte=end_date)
 
-        context['earnings'] = earnings
-        context['expenses'] = expenses
+        context['earnings'] = earnings.order_by('-date')
+        context['expenses'] = expenses.order_by('-date')
 
         return context
 
