@@ -125,7 +125,7 @@ class DashboardApp(ListView):
         earnings = Earnings.objects.filter(date__range=[start_date, end_date], user_id=user_id)
         expenses = Expenses.objects.filter(date__range=[start_date, end_date], user_id=user_id)
 
-        context['earnings_and_expenses'] = earnings.union(expenses).order_by('-date')
+        context['earnings_and_expenses'] = earnings.union(expenses).order_by('-unique_id')
         
         if self.request.method == 'GET':
             filters_category_earnings = self.request.GET.getlist('categoryEarnings')

@@ -1,9 +1,11 @@
 from django.http import HttpResponseRedirect
-from financeapp.models import CategoryEarnings, CategoryExpenses, Earnings, Expenses
+from financeapp.models import CategoryEarnings, CategoryExpenses, Earnings, Expenses, UniqueID
 from django.contrib import messages
 import decimal
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+
+
 
 
 def convert_value(value: str):
@@ -25,6 +27,7 @@ def create_earnings(request):
         return redirect('/login')
     
     if request.method == 'POST':
+        unique_id = UniqueID.objects.create()
         description = request.POST.get('description')
         value = convert_value(request.POST.get('value'))
         date = request.POST.get('date')
@@ -36,7 +39,7 @@ def create_earnings(request):
         user = request.user
 
 
-        earning = Earnings(description=description, value=value, date=date, recurrence=int(recurrent), category=category, user=user)
+        earning = Earnings(unique=unique_id, description=description, value=value, date=date, recurrence=int(recurrent), category=category, user=user)
         earning.save()
 
         messages.success(request, 'Receita adicionada com sucesso!')
@@ -49,6 +52,7 @@ def create_expenses(request):
         return redirect('/login')
     
     if request.method == 'POST':
+        unique_id = UniqueID.objects.create()
         description = request.POST.get('description')
         value = convert_value(request.POST.get('value'))
         date = request.POST.get('date')
@@ -59,7 +63,7 @@ def create_expenses(request):
         )
         user = request.user
         
-        expense = Expenses(description=description, value=value, date=date, recurrence=int(recurrent), category=category, user=user)
+        expense = Expenses(unique=unique_id, description=description, value=value, date=date, recurrence=int(recurrent), category=category, user=user)
         expense.save()
 
         messages.success(request, 'Despesa adicionada com sucesso!')

@@ -25,8 +25,15 @@ class CategoryExpenses(models.Model):
         verbose_name = u'Categoria das despesas'
         verbose_name_plural = u'Categorias das despesas'
 
+class UniqueID(models.Model):
+    unique_id = models.AutoField(primary_key=True)
+
+    def __str__(self):
+        return str(self.unique_id)
+
 class Earnings(models.Model):
 
+    unique = models.ForeignKey(UniqueID, on_delete=models.CASCADE, verbose_name='ID único')
     description = models.CharField(max_length=100, verbose_name='Descrição')
     value = models.DecimalField(max_digits=50000000000000, decimal_places=2, verbose_name='Valor')
     date = models.DateField(verbose_name='Data')
@@ -44,6 +51,7 @@ class Earnings(models.Model):
     
 class Expenses(models.Model):
 
+    unique = models.ForeignKey(UniqueID, on_delete=models.CASCADE, verbose_name='ID único')
     description = models.CharField(max_length=100, verbose_name='Descrição')
     value = models.DecimalField(max_digits=50000000000000, decimal_places=2, verbose_name='Valor')
     date = models.DateField(verbose_name='Data')

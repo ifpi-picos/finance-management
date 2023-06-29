@@ -22,7 +22,7 @@
 </button>
 {% endblock contentnav %}
 {% block content %}
-<div class="row dashboard-content">
+<div class="row dashboard-content pt-0 pl-2 pr-2">
   <div class="col">
     <div class="row d-flex mt-3">
       <div class="col info-box bg-white mr-2">
@@ -59,7 +59,10 @@
       <div class="col info-box bg-white mr-2 pl-4 pr-4 pb-4 pt-2" style="height: 40vh; overflow-y: auto;">
         <div class="row">
           <div class="col">
-            <h5 class="text-center">Últimos lançamentos</h5>
+            <strong>
+              <p class="text-center" style="color: #666666; font-size: small;">Últimos lançamentos</p>
+            </strong>
+            
           </div>
           {% for earning_and_expense in earnings_and_expenses %}
           <div class="col-auto info-box bg-white mr-2">
