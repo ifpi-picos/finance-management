@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class CategoryEarnings(models.Model):
     
     name = models.CharField(max_length=100, verbose_name='Nome')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
 
     def __str__(self):
         return self.name
@@ -14,6 +16,7 @@ class CategoryEarnings(models.Model):
 class CategoryExpenses(models.Model):
         
     name = models.CharField(max_length=100, verbose_name='Nome')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
 
     def __str__(self):
         return self.name
@@ -30,6 +33,7 @@ class Earnings(models.Model):
     recurrence = models.BooleanField(default=False, verbose_name='Recorrência')
     category = models.ForeignKey(CategoryEarnings, on_delete=models.CASCADE, verbose_name='Categoria')
     type = models.CharField(max_length=15, verbose_name='Tipo', default='earning')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
 
     def __str__(self):
         return self.description
@@ -46,6 +50,7 @@ class Expenses(models.Model):
     recurrence = models.BooleanField(default=False, verbose_name='Despesa recorrente')
     category = models.ForeignKey(CategoryExpenses, on_delete=models.CASCADE, verbose_name='Categoria')
     type = models.CharField(max_length=100, verbose_name='Tipo', default='expense')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Usuário')
 
     def __str__(self):
         return self.description

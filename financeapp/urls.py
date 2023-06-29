@@ -6,6 +6,9 @@ app_name = 'financeapp'
 
 urlpatterns = [
     path('', RedirectView.as_view(url='dashboard'), name='dashboard'),
+    path('login', views.login_view, name='login'),
+    path('logout', views.logout_view, name='logout'),
+    path('register', views.register, name='register'),
     path('dashboard', views.DashboardApp.as_view(), name='dashboard'),
     path('extract', views.ExtractApp.as_view(), name='extract'),
     path('createearnings', views.create_earnings, name='createearnings'),

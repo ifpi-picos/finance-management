@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    {% csrf_token %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastre-se - Gestor de Finanças</title>
@@ -11,21 +12,25 @@
     <div class="container mt-4">
         <div class="row align-items-center">
             <div class="col-md-10 mx-auto col-lg-5">
-                <form class="p-4 p-md-5 border rounded-3 bg-light">
+                <form class="p-4 p-md-5 border rounded-3 bg-light" action="{% url 'financeapp:register' %}" method="POST">{% csrf_token %}
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" required/>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" name="email" required/>
                         <label for="inputEmail">E-mail</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="inputName" placeholder="Nome" required/>
+                        <input type="text" class="form-control" id="inputName" placeholder="Nome" name="name" required/>
                         <label for="inputName">Nome</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="user" class="form-control" id="inputUser" placeholder="Usuário" required/>
+                        <input type="text" class="form-control" id="inputLastName" placeholder="Sobrenome" name="lastname" required/>
+                        <label for="inputLastName">Sobrenome</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="user" class="form-control" id="inputUser" placeholder="Usuário" name="username" required/>
                         <label for="inputUser">Usuário</label>
                     </div>
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Senha" required/>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Senha" name="password" required/>
                         <label for="inputPassword">Senha</label>
                     </div>
                     <button class="btn btn-lg btn-outline-success mb-3 w-100" type="submit">Cadastre-se</button>
