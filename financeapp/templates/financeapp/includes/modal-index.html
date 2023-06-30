@@ -4,6 +4,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title-md" id="ModalLabelRevenue">Adicionar Receita</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="container">
@@ -45,11 +48,16 @@
                             <div class="col">
                                 <!-- Categoria -->
                                 <label for="category">Categoria</label>
-                                <select class="form-control" id="category" name="category">
+                                <select class="form-control" id="category" name="category" required>
                                     {% for categoryearning in categoryearnings %}
                                     <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
                                     {% endfor %}
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary w-100" id="submit-form">Salvar</button>
                             </div>
                         </div>
                     </form>
@@ -88,10 +96,6 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn btn-primary" id="submit-form-revenue">Salvar</button>
-            </div>
         </div>
     </div>
 </div>
@@ -102,6 +106,9 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h6 class="modal-title-md" id="ModalLabelExpense">Adicionar Despesa</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <div class="container">
@@ -143,11 +150,16 @@
                             <div class="col">
                                 <!-- Categoria -->
                                 <label for="category">Categoria</label>
-                                <select class="form-control" id="category" name="category">
+                                <select class="form-control" id="category" name="category" required>
                                     {% for categoryexpense in categoryexpenses %}
                                     <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
                                     {% endfor %}
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary w-100" id="submit-form">Salvar</button>
                             </div>
                         </div>
                     </form>
@@ -185,10 +197,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn btn-primary" id="submit-form-expense">Salvar</button>
             </div>
         </div>
     </div>

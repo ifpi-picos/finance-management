@@ -1,8 +1,6 @@
 const addEventListeners = () => {
     const btnAddRevenue = document.getElementById("add-revenue");
     const btnAddExpense = document.getElementById("add-expense");
-    const btnSubmitFormRevenue = document.getElementById("submit-form-revenue");
-    const btnSubmitFormExpense = document.getElementById("submit-form-expense");
 
     btnAddRevenue.addEventListener("click", () => {
         $('#ModalRevenue').modal('show');
@@ -10,16 +8,6 @@ const addEventListeners = () => {
 
     btnAddExpense.addEventListener("click", () => {
         $('#ModalExpense').modal('show');
-    });
-    
-    btnSubmitFormRevenue.addEventListener("click", () => {
-        const form = document.getElementById("form-revenue");
-        form.submit();
-    });
-
-    btnSubmitFormExpense.addEventListener("click", () => {
-        const form = document.getElementById("form-expense");
-        form.submit();
     });
 }
 
