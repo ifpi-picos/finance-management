@@ -62,10 +62,9 @@
             <strong>
               <p class="text-center" style="color: #666666; font-size: small;">Últimos lançamentos</p>
             </strong>
-            
           </div>
           {% for earning_and_expense in earnings_and_expenses %}
-          <div class="col-auto info-box bg-white mr-2">
+          <div class="col-auto info-box bg-white">
             {% if earning_and_expense.type == 'earning' %}
             <span class="info-box-icon bg-success">
               <i class="fas fa-dollar-sign" style="color: white;"></i>
