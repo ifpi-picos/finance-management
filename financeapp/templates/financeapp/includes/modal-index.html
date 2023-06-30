@@ -10,6 +10,39 @@
             </div>
             <div class="modal-body">
                 <div class="container">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
+                                data-target="#categoryToggle" aria-expanded="false" aria-controls="categoryToggle">
+                                Adicionar / Remover Categorias
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse mt-3" id="categoryToggle">
+                        <div class="row">
+                            <div class="col">
+                                <form action="{% url 'financeapp:createcategoryearnings' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="newCategory">Nova Categoria</label>
+                                    <input type="text" class="form-control" id="newCategory"
+                                        placeholder="Digite o nome da nova categoria" name="description">
+                                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{% url 'financeapp:deletecategoryearnings' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="deleteCategory">Excluir Categoria</label>
+                                    <select class="form-control" id="deleteCategory" name="delete-category">
+                                        {% for categoryearning in categoryearnings %}
+                                        <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <form action="{% url 'financeapp:createearnings' %}" method="post" id="form-revenue">
                         {% csrf_token %}
                         <div class="row form-group">
@@ -61,39 +94,7 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
-                                data-target="#categoryToggle" aria-expanded="false" aria-controls="categoryToggle">
-                                Adicionar / Remover Categorias
-                            </button>
-                        </div>
-                    </div>
-                    <div class="collapse mt-3" id="categoryToggle">
-                        <div class="row">
-                            <div class="col">
-                                <form action="{% url 'financeapp:createcategoryearnings' %}" method="post">
-                                    {% csrf_token %}
-                                    <label for="newCategory">Nova Categoria</label>
-                                    <input type="text" class="form-control" id="newCategory"
-                                        placeholder="Digite o nome da nova categoria" name="description">
-                                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
-                                </form>
-                            </div>
-                            <div class="col">
-                                <form action="{% url 'financeapp:deletecategoryearnings' %}" method="post">
-                                    {% csrf_token %}
-                                    <label for="deleteCategory">Excluir Categoria</label>
-                                    <select class="form-control" id="deleteCategory" name="delete-category">
-                                        {% for categoryearning in categoryearnings %}
-                                        <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <button type="submit" class="btn btn-danger mt-2">Excluir</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -112,6 +113,39 @@
             </div>
             <div class="modal-body">
                 <div class="container">
+                    <div class="row mt-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
+                                data-target="#categoryToggle" aria-expanded="false" aria-controls="categoryToggle">
+                                Adicionar / Remover Categorias
+                            </button>
+                        </div>
+                    </div>
+                    <div class="collapse mt-3" id="categoryToggle">
+                        <div class="row">
+                            <div class="col">
+                                <form action="{% url 'financeapp:createcategoryexpenses' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="newCategory">Nova Categoria</label>
+                                    <input type="text" class="form-control" id="newCategory"
+                                        placeholder="Digite o nome da nova categoria" name="description">
+                                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <form action="{% url 'financeapp:deletecategoryexpenses' %}" method="post">
+                                    {% csrf_token %}
+                                    <label for="deleteCategory">Excluir Categoria</label>
+                                    <select class="form-control" id="deleteCategory" name="delete-category">
+                                        {% for categoryexpense in categoryexpenses %}
+                                        <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <button type="submit" class="btn btn-danger mt-2">Excluir</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <form action="{% url 'financeapp:createexpenses' %}" method="post" id="form-expense">
                         {% csrf_token %}
                         <div class="row form-group">
@@ -163,39 +197,6 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row mt-3">
-                        <div class="col">
-                            <button type="button" class="btn btn-outline-success w-100" data-toggle="collapse"
-                                data-target="#categoryToggle" aria-expanded="false" aria-controls="categoryToggle">
-                                Adicionar / Remover Categorias
-                            </button>
-                        </div>
-                    </div>
-                    <div class="collapse mt-3" id="categoryToggle">
-                        <div class="row">
-                            <div class="col">
-                                <form action="{% url 'financeapp:createcategoryexpenses' %}" method="post">
-                                    {% csrf_token %}
-                                    <label for="newCategory">Nova Categoria</label>
-                                    <input type="text" class="form-control" id="newCategory"
-                                        placeholder="Digite o nome da nova categoria" name="description">
-                                    <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
-                                </form>
-                            </div>
-                            <div class="col">
-                                <form action="{% url 'financeapp:deletecategoryexpenses' %}" method="post">
-                                    {% csrf_token %}
-                                    <label for="deleteCategory">Excluir Categoria</label>
-                                    <select class="form-control" id="deleteCategory" name="delete-category">
-                                        {% for categoryexpense in categoryexpenses %}
-                                        <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    <button type="submit" class="btn btn-danger mt-2">Excluir</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
