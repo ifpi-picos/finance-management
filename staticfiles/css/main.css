@@ -1,0 +1,70 @@
+::-webkit-scrollbar-track {
+    background-color: #212529;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #b4b4b4;
+    border-radius: 2px;
+}
+
+/* sidebar */
+
+.sidebar {
+    max-height: calc(100vh - 56px) !important;
+}
+
+hr {
+    background-color: black;
+}
+
+/* container-fluid */
+
+.container-fluid {
+    min-height: calc(100vh - 56px) !important;
+}
+
+/* tamanho da fonte de acordo com o tamanho de tela */
+
+.btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
+    font-size: 1vw;
+}
+
+#extract, #dashboard {
+    font-size: 1vw;
+}
+
+/* usuário */
+
+.rounded-circle{
+    width: 10vw; 
+    height: 10vw; 
+    overflow: hidden;
+}
+
+.user-name {
+    font-size: 1vw;
+}
+
+/* Estilos para dispositivos móveis */
+@media (max-width: 767px) {
+    .btn.btn-outline-success.btn-md, .btn.btn-outline-danger.btn-md {
+        font-size: 1rem !important;
+    }
+
+    #extract, #dashboard {
+        font-size: 1rem;
+    }
+
+    .rounded-circle{
+        width: 10rem; 
+        height: 10rem; 
+        overflow: hidden;
+    }
+
+    .user-name {
+        font-size: 1rem;
+    }
+}
