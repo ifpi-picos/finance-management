@@ -37,7 +37,7 @@
         <div class="row">
             <!-- barra de navegação lateral -->
             <div class="col-md-2 sidebar-class p-0">
-                <div class="sidebar d-flex flex-column flex-shrink-0 p-3 bg-white container-fluid">
+                <div class="sidebar d-flex flex-column flex-shrink-0 p-3 container-fluid">
                     <div class="row mb-3">
                         <div class="col d-flex justify-content-center">
                             <div class="rounded-circle">
@@ -100,7 +100,7 @@
             </div>
 
             <!-- conteúdo -->
-            <div class="col-md-10 container-fluid bg-light pl-0">
+            <div class="col-md-10 container-fluid pl-0">
                 {% block nav %}{% endblock %}
                 <div class="container">
                     {% if messages %}
@@ -135,6 +135,34 @@
     setTimeout(function () {
         $(".alert").alert('close');
     }, 3000);
+</script>
+<script>
+    function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle("dark-mode");
+            
+        const isDarkModeEnabled = body.classList.contains("dark-mode");
+            
+        localStorage.setItem("darkModeEnabled", isDarkModeEnabled);
+    }
+        
+    window.addEventListener("load", function() {
+        const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
+        
+        if (isDarkModeEnabled === "true") {
+            const body = document.body;
+            body.classList.add("dark-mode");
+        }
+    });
+</script>
+<script>
+    const myButton = document.getElementById("dark-mode-toggle");
+    const icon = document.getElementById("dl-icon")
+    myButton.addEventListener("click", function() {
+        icon.classList.toggle('fa-moon');
+        icon.classList.toggle('fa-sun');
+    })
+    myButton.addEventListener("click", toggleDarkMode)
 </script>
 {% block scripts %}{% endblock %}
 </html>

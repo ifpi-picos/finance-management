@@ -1,56 +1,35 @@
-.icon-background-yellow {
-  background-color: yellow;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 10%;
-}
-
-.icon-background-green {
-  background-color: green;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 10%;
-}
-
-.icon-background-red {
-  background-color: red;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  width: 10%;
-}
-
-.text-white-1 {
-  display: flex;
-  color: white;
-  font-size: 1.2rem;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.text-white-2 {
-  display: flex;
-  color: white;
-  font-size: 1.2rem;
-  justify-content: center;
-  align-items: center;
-
-}
-
-.text-white-3 {
-  display: flex;
-  color: white;
-  font-size: 1.2rem;
-  justify-content: center;
-  align-items: center;
-
-}
-
 .info-box::-webkit-scrollbar {
   width: 0;
   height: 0;
   background-color: #F5F5F5;
+}
+
+.col-md-10 {
+  background-color: #f8f9fa;
+}
+
+.dark-mode .col-md-10 {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.navbar-brand {
+  color: #333333;
+}
+
+.dark-mode .navbar-brand {
+  color: white;
+}
+
+.text-center {
+  color: #666666;
+}
+
+.dark-mode .text-center {
+  color: white;
 }

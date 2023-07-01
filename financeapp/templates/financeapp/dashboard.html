@@ -20,26 +20,29 @@
 <button class="btn btn-outline-info ml-4" data-toggle="modal" data-target="#modalFilters">
   <i class="fas fa-filter"></i>
 </button>
+<button id="dark-mode-toggle" class="btn btn-dark ml-3">
+  <i class="fas fa-moon" id="dl-icon"></i>
+</button>
 {% endblock contentnav %}
 {% block content %}
 <div class="row dashboard-content pt-0 pl-2 pr-2">
   <div class="col">
     <div class="row d-flex mt-3">
-      <div class="col info-box bg-white mr-2">
+      <div class="col info-box mr-2">
         <span class="info-box-icon bg-warning"><i class="fas fa-landmark text-white-1" style="color: white;"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Saldo</span>
           <span class="info-box-number">R$ {{balance}}</span>
         </div>
       </div>
-      <div class="col info-box bg-white mr-2">
+      <div class="col info-box mr-2">
         <span class="info-box-icon bg-success"><i class="fas fa-dollar-sign"></i></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Receita</span>
           <span class="info-box-number">R$ {{sum_earnings}}</span>
         </div>
       </div>
-      <div class="col info-box bg-white">
+      <div class="col info-box">
         <span class="info-box-icon bg-danger"><i class="fas fa-hand-holding-usd"></i></span>
         <div class="info-box-content">
           <span class="info-box-text">Despesas</span>
@@ -48,15 +51,15 @@
       </div>
     </div>
     <div class="row d-flex">
-      <div class="col info-box bg-white mr-2" style="height: 30vh;">
+      <div class="col info-box mr-2" style="height: 30vh;">
         <canvas id="barChartCol1"></canvas>
       </div>
-      <div class="col info-box bg-white" style="height: 30vh;">
+      <div class="col info-box" style="height: 30vh;">
         <canvas id="myChart"></canvas>
       </div>
     </div>
     <div class="row d-flex">
-      <div class="col info-box bg-white mr-2 pl-4 pr-4 pb-2 pt-3" style="height: 40vh; overflow-y: auto;">
+      <div class="col info-box mr-2 pl-4 pr-4 pb-2 pt-3" style="height: 40vh; overflow-y: auto;">
         <div class="info-box-content m-auto">
           <div class="row">
             <div class="col">
@@ -65,7 +68,7 @@
               </strong>
             </div>
             {% for earning_and_expense in earnings_and_expenses %}
-            <div class="col-auto info-box bg-white">
+            <div class="col-auto info-box">
               {% if earning_and_expense.type == 'earning' %}
               <span class="info-box-icon bg-success">
                 <i class="fas fa-dollar-sign" style="color: white;"></i>
@@ -84,13 +87,13 @@
           </div>
         </div>
       </div>
-      <div class="col-2 info-box bg-white mr-2" style="height: 40vh;">
+      <div class="col-2 info-box mr-2" style="height: 40vh;">
         <canvas id="doughnutChartEarnings" class="chart"></canvas>
       </div>
-      <div class="col-2 info-box bg-white mr-2" style="height: 40vh;">
+      <div class="col-2 info-box mr-2" style="height: 40vh;">
         <canvas id="doughnutChartExpenses" class="chart"></canvas>
       </div>
-      <div class="col-3 info-box bg-white" style="height: 40vh;">
+      <div class="col-3 info-box" style="height: 40vh;">
         <canvas id="radarChart" class="chart"></canvas>
       </div>
     </div>
