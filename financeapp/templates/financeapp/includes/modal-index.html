@@ -25,7 +25,7 @@
                                     {% csrf_token %}
                                     <label for="newCategory">Nova Categoria</label>
                                     <input type="text" class="form-control" id="newCategory"
-                                        placeholder="Digite o nome da nova categoria" name="description">
+                                        placeholder="Digite o nome da nova categoria" name="description" required>
                                     <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
                                 </form>
                             </div>
@@ -33,7 +33,7 @@
                                 <form action="{% url 'financeapp:deletecategoryearnings' %}" method="post">
                                     {% csrf_token %}
                                     <label for="deleteCategory">Excluir Categoria</label>
-                                    <select class="form-control" id="deleteCategory" name="delete-category">
+                                    <select class="form-control" id="deleteCategory" name="delete-category" required>
                                         {% for categoryearning in categoryearnings %}
                                         <option value="{{ categoryearning.id }}">{{ categoryearning.name }}</option>
                                         {% endfor %}
@@ -126,7 +126,7 @@
                                 <form action="{% url 'financeapp:createcategoryexpenses' %}" method="post">
                                     {% csrf_token %}
                                     <label for="newCategory">Nova Categoria</label>
-                                    <input type="text" class="form-control" id="newCategory"
+                                    <input type="text" class="form-control" id="newCategory" required
                                         placeholder="Digite o nome da nova categoria" name="description">
                                     <button type="submit" class="btn btn-primary mt-2">Adicionar</button>
                                 </form>
@@ -135,7 +135,7 @@
                                 <form action="{% url 'financeapp:deletecategoryexpenses' %}" method="post">
                                     {% csrf_token %}
                                     <label for="deleteCategory">Excluir Categoria</label>
-                                    <select class="form-control" id="deleteCategory" name="delete-category">
+                                    <select class="form-control" id="deleteCategory" name="delete-category" required>
                                         {% for categoryexpense in categoryexpenses %}
                                         <option value="{{ categoryexpense.id }}">{{ categoryexpense.name }}</option>
                                         {% endfor %}

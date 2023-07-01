@@ -5,9 +5,6 @@ import decimal
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 
-
-
-
 def convert_value(value: str):
 
     if ',' in value:
