@@ -56,30 +56,32 @@
       </div>
     </div>
     <div class="row d-flex">
-      <div class="col info-box bg-white mr-2 pl-4 pr-4 pb-4 pt-2" style="height: 40vh; overflow-y: auto;">
-        <div class="row">
-          <div class="col">
-            <strong>
-              <p class="text-center" style="color: #666666; font-size: small;">Últimos lançamentos</p>
-            </strong>
-          </div>
-          {% for earning_and_expense in earnings_and_expenses %}
-          <div class="col-auto info-box bg-white">
-            {% if earning_and_expense.type == 'earning' %}
-            <span class="info-box-icon bg-success">
-              <i class="fas fa-dollar-sign" style="color: white;"></i>
-            </span>
-            {% else %}
-            <span class="info-box-icon bg-danger">
-              <i class="fas fa-hand-holding-usd" style="color: white;"></i>
-            </span>
-            {% endif %}
-            <div class="info-box-content">
-              <span class="info-box-text">{{ earning_and_expense.description }}</span>
-              <span class="info-box-number mt-0">R$ {{ earning_and_expense.value }}</span>
+      <div class="col info-box bg-white mr-2 pl-4 pr-4 pb-4 pt-3" style="height: 40vh; overflow-y: auto;">
+        <div class="info-box-content m-auto">
+          <div class="row">
+            <div class="col">
+              <strong>
+                <p class="text-center" style="color: #666666; font-size: small;">Últimos lançamentos</p>
+              </strong>
             </div>
+            {% for earning_and_expense in earnings_and_expenses %}
+            <div class="col-auto info-box bg-white">
+              {% if earning_and_expense.type == 'earning' %}
+              <span class="info-box-icon bg-success">
+                <i class="fas fa-dollar-sign" style="color: white;"></i>
+              </span>
+              {% else %}
+              <span class="info-box-icon bg-danger">
+                <i class="fas fa-hand-holding-usd" style="color: white;"></i>
+              </span>
+              {% endif %}
+              <div class="info-box-content">
+                <span class="info-box-text">{{ earning_and_expense.description }}</span>
+                <span class="info-box-number mt-0">R$ {{ earning_and_expense.value }}</span>
+              </div>
+            </div>
+            {% endfor %}
           </div>
-          {% endfor %}
         </div>
       </div>
       <div class="col-2 info-box bg-white mr-2" style="height: 40vh;">
