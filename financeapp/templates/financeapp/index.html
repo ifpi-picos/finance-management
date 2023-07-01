@@ -21,13 +21,11 @@
             <i class="fas fa-landmark mr-1"></i>
             GESTOR DE <strong>FINANÇAS</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
-            aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav mr-auto"></ul>
+            <button id="dark-mode-toggle" class="btn btn-dark mr-3">
+                <i class="fas fa-moon" id="dl-icon"></i>
+            </button>
             {% block contentnav %}{% endblock %}
         </div>
     </nav>
