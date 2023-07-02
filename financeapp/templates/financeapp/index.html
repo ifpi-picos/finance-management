@@ -50,7 +50,7 @@
                     </div>
                     <div class="row">
                         <div class="col username text-center mb-2">
-                            <h6 class="user-name">
+                            <h6 class="user-name" id="username">
                                 Olá, {{ username }}!
                             </h6>
                         </div>
@@ -92,14 +92,13 @@
                                         Sobre
                                     </a>
                                 </li>
-                                
                             </ul>
                         </div>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col">
-                            <a href="{% url 'financeapp:logout' %}" class="nav-link text-body pb-0">
+                            <a href="{% url 'financeapp:logout' %}" class="nav-link text-body pb-0" id="logout">
                                 <i class="fas fa-sign-out"></i>
                                 Sair
                             </a>
@@ -146,34 +145,6 @@
     setTimeout(function () {
         $(".alert").alert('close');
     }, 3000);
-</script>
-<script>
-    function toggleDarkMode() {
-        const body = document.body;
-        body.classList.toggle("dark-mode");
-            
-        const isDarkModeEnabled = body.classList.contains("dark-mode");
-            
-        localStorage.setItem("darkModeEnabled", isDarkModeEnabled);
-    }
-        
-    window.addEventListener("load", function() {
-        const isDarkModeEnabled = localStorage.getItem("darkModeEnabled");
-        
-        if (isDarkModeEnabled === "true") {
-            const body = document.body;
-            body.classList.add("dark-mode");
-        }
-    });
-</script>
-<script>
-    const myButton = document.getElementById("dark-mode-toggle");
-    const icon = document.getElementById("dl-icon")
-    myButton.addEventListener("click", function() {
-        icon.classList.toggle('fa-moon');
-        icon.classList.toggle('fa-sun');
-    })
-    myButton.addEventListener("click", toggleDarkMode)
 </script>
 {% block scripts %}{% endblock %}
 </html>
