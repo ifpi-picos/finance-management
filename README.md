@@ -1,1 +1,11 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/UFN7TVW9)
+
+Bem-vindo à página de informações do Gestor de Finanças!!
+
+O Gestor de Finanças é projetado para ajudar indivíduos a tomar o controle de suas finanças pessoais. Nosso objetivo é fornecer uma solução abrangente e intuitiva que ajude os usuários a alcançar a estabilidade financeira, estabelecer metas e tomar decisões informadas sobre seus recursos financeiros.
+
+O programa foi desenvolvido por: Jean Carlos, Karielly de Carvalho e Avelar Rodrigues. Somos estudantes do Instituto Federal do Piauí - Campus Picos, que desenvolvemos esse gestor de finanças. Com a orientação e supervisão do Professor Jesiel Viana. Projeto da disciplina de Algoritmos e Programação.
+
+Estamos aqui para ajudar! Se você tiver dúvidas, sugestões ou precisar de suporte, entre em contato conosco através do email: admin@gmail.com. Nossa equipe estará pronta para atendê-lo e fornecer a assistência necessária.
+
+---
+
