@@ -5,5 +5,6 @@ from financeapp.views.updateviews import *
 from financeapp.views.deleteviews import *
 from financeapp.views.login import *
 from financeapp.views.register import register
+from financeapp.views.about import AboutApp
 
 

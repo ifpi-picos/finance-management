@@ -14,6 +14,7 @@ const addEventListeners = () => {
 const sidebarFunctions = () => {
     const btnDashboard = document.getElementById("dashboard");
     const btnExtract = document.getElementById("extract");
+    const btnAbout = document.getElementById("about");
     const path = window.location.pathname;
 
     switch (path) {
@@ -23,6 +24,10 @@ const sidebarFunctions = () => {
             break;
         case "/extract":
             btnExtract.classList.add("active");
+            btnDashboard.classList.add("text-dark");
+            break;
+        case "/about":
+            btnAbout.classList.add("active");
             btnDashboard.classList.add("text-dark");
             break;
         default:

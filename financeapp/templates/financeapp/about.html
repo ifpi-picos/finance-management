@@ -1,0 +1,31 @@
+{% extends "financeapp/index.html" %}
+{% load static %}
+
+{% block title %}Gestor de Finanças - Sobre{% endblock title %}
+
+{% block content %}
+    {% block nav %}
+        <nav class="navbar navbar-expand-lg pr-0">
+            <a class="navbar-brand pl-4" href="{% url 'financeapp:about' %}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    {% endblock nav %}
+
+    <div class="row about-content pt-0 pl-2 pr-2 mt-2" style="font-family: 'Roboto', sans-serif;">
+        <div class="row about-content pt-0 pl-2 pr-2" style="font-family: 'Roboto', sans-serif;">
+            <div class="col text-justify">
+                <h4>Bem-vindo à página de informações do Gestor de Finanças!!</h4>
+                <p class="mt-4">O Gestor de Finanças é projetado para ajudar indivíduos a tomar o controle de suas finanças pessoais. Nosso objetivo é fornecer uma solução abrangente e intuitiva que ajude os usuários a alcançar a estabilidade financeira, estabelecer metas e tomar decisões informadas sobre seus recursos financeiros.</p>
+                <p>O programa foi desenvolvido por: Jean Carlos, Karielly de Carvalho e Avelar Rodrigues. Somos estudantes do Instituto Federal do Piauí - Campus Picos, que desenvolvemos esse gestor de finanças. Com a orientação e supervisão do Professor Jesiel Viana. Projeto da disciplina de Algoritmos e Programação.</p>
+                <p>Estamos aqui para ajudar! Se você tiver dúvidas, sugestões ou precisar de suporte, entre em contato conosco através do email: <a href="mailto:admin@gmail.com">admin@gmail.com</a>. Nossa equipe estará pronta para atendê-lo e fornecer a assistência necessária.</p>
+                <img src="{% static 'img/imagem.png'%}" alt="" style="width: 400px; float: right; margin-left: 20px;">
+            </div>
+        </div>
+    </div>
+    
+    
+{% endblock content %}
+

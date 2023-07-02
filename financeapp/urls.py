@@ -11,6 +11,7 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('dashboard', views.DashboardApp.as_view(), name='dashboard'),
     path('extract', views.ExtractApp.as_view(), name='extract'),
+    path('about', views.AboutApp.as_view(), name='about'),
     path('createearnings', views.create_earnings, name='createearnings'),
     path('createexpenses', views.create_expenses, name='createexpenses'),
     path('createcategoryearnings', views.create_category_earnings, name='createcategoryearnings'),
