@@ -1,4 +1,4 @@
-## Bem-vindo à página de informações do Gestor de Finanças!!
+## Gestor de Finanças Pessoais
 
 O Gestor de Finanças é projetado para ajudar indivíduos a tomar o controle de suas finanças pessoais. Nosso objetivo é fornecer uma solução abrangente e intuitiva que ajude os usuários a alcançar a estabilidade financeira, estabelecer metas e tomar decisões informadas sobre seus recursos financeiros.
 
